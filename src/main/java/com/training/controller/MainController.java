@@ -15,49 +15,49 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/index"})
     public String getInit(Model model) {
-        model.addAttribute("direction","components/init");
+        model.addAttribute("direction","init");
         return "index";
     }
 
     @RequestMapping("/products")
     public String products(Model model) {
-        model.addAttribute("direction","components/product");
+        model.addAttribute("direction","product");
         return "index";
     }
 
     @RequestMapping("/accounts")
     public String accounts(Model model) {
-        model.addAttribute("direction","components/accounts");
+        model.addAttribute("direction","accounts");
         return "index";
     }
 
     @RequestMapping("/post-manage")
     public String postManage(Model model) {
-        model.addAttribute("direction","components/post-manage");
+        model.addAttribute("direction","post-manage");
         return "index";
     }
 
     @RequestMapping("/order-list-manage")
     public String orderList(Model model) {
-        model.addAttribute("direction","components/order-list-manage");
+        model.addAttribute("direction","order-list-manage");
         return "index";
     }
 
     @RequestMapping("/notification-manage")
     public String notification(Model model) {
-        model.addAttribute("direction","components/notification-manage");
+        model.addAttribute("direction","notification-manage");
         return "index";
     }
 
     @RequestMapping("/create-account")
     public String createAccount(Model model) {
-        model.addAttribute("direction","components/accounts");
+        model.addAttribute("direction","accounts");
         return "index";
     }
 
     @RequestMapping("/add-product")
     public String addProduct(Model model) {
-        model.addAttribute("direction","components/add-product");
+        model.addAttribute("direction","add-product");
         return "index";
     }
 
