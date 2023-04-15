@@ -1,0 +1,20 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="script">
+<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+<!-- https://jquery.com/download/ -->
+<script th:src="@{/static/js/moment.min.js}"></script>
+<!-- https://momentjs.com/ -->
+<script th:src="@{/static/js/Chart.min.js}"></script>
+<!-- http://www.chartjs.org/docs/latest/ -->
+<script th:src="@{/static/js/bootstrap.min.js}"></script>
+<!-- https://getbootstrap.com/ -->
+<script th:src="@{/static/js/tooplate-scripts.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('.nav-item').click(function () {
+            $(this).prop("active");
+        });
+
+    })
+</script>
+</body>
