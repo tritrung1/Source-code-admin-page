@@ -9,12 +9,65 @@
 <script th:src="@{/static/js/bootstrap.min.js}"></script>
 <!-- https://getbootstrap.com/ -->
 <script th:src="@{/static/js/tooplate-scripts.js}"></script>
-<script>
-    $(document).ready(function () {
-        $('.nav-item').click(function () {
-            $(this).prop("active");
-        });
 
-    })
+<script th:if="${direction} == 'container/products'">
+    $('#productsList').addClass("active");
 </script>
+<script th:if="${direction} == 'container/accounts'">
+    $('#accountList').addClass("active");
+</script>
+<script th:if="${direction} == 'container/post-manage'">
+    $('#postManagement').addClass("active");
+</script>
+<script th:if="${direction} == 'container/order-list-manage'">
+    $('#orderList').addClass("active");
+</script>
+<script th:if="${direction} == 'container/notification-manage'">
+    $('#notificationList').addClass("active");
+</script>
+<script th:if="${direction} == 'container/create-account'">
+    $('#accountList').addClass("active");
+</script>
+<script th:if="${direction} == 'container/add-product'">
+    $('#productsList').addClass("active");
+</script>
+<script th:if="${direction} == 'container/edit-product'">
+    $('#productsList').addClass("active");
+</script>
+<script th:if="${direction} == 'container/update-user'">
+    $('#accountList').addClass("active");
+</script>
+
+<script th:if="${direction} == 'container/init'">
+    Chart.defaults.global.defaultFontColor = 'white';
+    let ctxLine,
+        ctxBar,
+        ctxPie,
+        optionsLine,
+        optionsBar,
+        optionsPie,
+        configLine,
+        configBar,
+        configPie,
+        lineChart;
+    barChart, pieChart;
+    // DOM is ready
+    $(function () {
+        drawLineChart(); // Line Chart
+        drawBarChart(); // Bar Chart
+        drawPieChart(); // Pie Chart
+
+        $(window).resize(function () {
+            updateLineChart();
+            updateBarChart();
+        });
+    })
+
+</script>
+<script th:if="${direction} == 'container/add-product'">
+    $(function() {
+        $("#expire_date").datepicker();
+    });
+</script>
+<script th:if="${direction} == 'container/add-product'" th:src="@{/static/jquery-ui-datepicker/jquery-ui.min.js}"></script>
 </body>

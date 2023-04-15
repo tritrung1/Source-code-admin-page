@@ -21,7 +21,7 @@ public class MainController {
 
     @RequestMapping("/products")
     public String products(Model model) {
-        model.addAttribute("direction","container/product");
+        model.addAttribute("direction","container/products");
         return "index";
     }
 
@@ -51,7 +51,13 @@ public class MainController {
 
     @RequestMapping("/create-account")
     public String createAccount(Model model) {
-        model.addAttribute("direction","container/accounts");
+        model.addAttribute("direction","container/create-account");
+        return "index";
+    }
+
+    @GetMapping("/update-account")
+    public String updateAccount(Model model) {
+        model.addAttribute("direction", "container/update-account");
         return "index";
     }
 
@@ -61,4 +67,9 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/edit-product")
+    public String editProduct(Model model) {
+        model.addAttribute("direction", "container/edit-product");
+        return "index";
+    }
 }

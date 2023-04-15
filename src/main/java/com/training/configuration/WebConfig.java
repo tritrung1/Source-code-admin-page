@@ -11,9 +11,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(
-                        "/static/**")
+                        "/static/**", "/static/dict/**")
                 .addResourceLocations(
-                        "classpath:/static/");
+                        "classpath:/static/", "classpath:/static/dist/");
     }
 
     //end

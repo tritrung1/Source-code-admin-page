@@ -13,4 +13,8 @@
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" th:href="@{/static/css/templatemo-style.css}">
 
+    <link th:if="${direction} == 'container/add-product'" rel="stylesheet" th:href="@{/static/jquery-ui-datepicker/jquery-ui.min.css}" type="text/css" />
+    <script th:if="${direction} == 'container/add-product'" rel="stylesheet" th:href="@{/static/js/jquery-3.6.0.js}" type="text/css"></script>
+    <script th:if="${direction} == 'container/add-product'" rel="stylesheet" th:href="@{/static/jquery-ui-datepicker/jquery-ui.js}" type="text/css"></script>
+
 </head>
