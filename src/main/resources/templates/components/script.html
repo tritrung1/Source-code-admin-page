@@ -17,21 +17,23 @@
 <!-- script active navbar -->
 <script th:if="${direction} == 'container/products'">
     $('#productsList').addClass("active");
-    $('#product-table').DataTable();
+    <!-- script dataTable -->
+    $('#products-table').DataTable();
 </script>
 <script th:if="${direction} == 'container/accounts'">
     $('#accountList').addClass("active");
+    <!-- script dataTable -->
+    $('#accounts-table').DataTable();
 </script>
 <script th:if="${direction} == 'container/post-manage'">
     $('#postManagement').addClass("active");
-
     <!-- script dataTable -->
-    $(document).ready(function () {
-    $('#example').DataTable();
-    });
+    $('#post-manage-table').DataTable();
 </script>
 <script th:if="${direction} == 'container/order-list-manage'">
     $('#orderList').addClass("active");
+    <!-- script dataTable -->
+    $('#order-list-table').DataTable();
 </script>
 <script th:if="${direction} == 'container/notification-manage'">
     $('#notificationList').addClass("active");
