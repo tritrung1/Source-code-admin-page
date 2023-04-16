@@ -11,10 +11,13 @@
 <script th:src="@{/static/js/bootstrap.min.js}"></script>
 <!-- https://getbootstrap.com/ -->
 <script th:src="@{/static/js/tooplate-scripts.js}"></script>
+<!-- script dataTable -->
+<script th:src="@{/static/js/datatables.min.js}"></script>
 
 <!-- script active navbar -->
 <script th:if="${direction} == 'container/products'">
     $('#productsList').addClass("active");
+    $('#product-table').DataTable();
 </script>
 <script th:if="${direction} == 'container/accounts'">
     $('#accountList').addClass("active");
@@ -82,6 +85,11 @@
 </script>
 <script th:if="${direction} == 'container/add-product'" th:src="@{/static/jquery-ui-datepicker/jquery-ui.min.js}"></script>
 
-<!-- script dataTable -->
-<script th:if="${direction} == 'container/post-manage'" th:src="@{/static/js/datatables.min.js}"></script>
+<script th:if="${direction} == 'container/edit-product'">
+    $(function() {
+        $("#expire_date").datepicker();
+    });
+</script>
+<script th:if="${direction} == 'container/edit-product'" th:src="@{/static/jquery-ui-datepicker/jquery-ui.min.js}"></script>
+
 </body>
