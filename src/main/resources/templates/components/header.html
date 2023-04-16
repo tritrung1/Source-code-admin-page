@@ -1,6 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="header">
+    <!-- CSS common -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,8 +14,13 @@
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" th:href="@{/static/css/templatemo-style.css}">
 
+    <!-- CSS datepicker -->
     <link th:if="${direction} == 'container/add-product'" rel="stylesheet" th:href="@{/static/jquery-ui-datepicker/jquery-ui.min.css}" type="text/css" />
     <script th:if="${direction} == 'container/add-product'" rel="stylesheet" th:href="@{/static/js/jquery-3.6.0.js}" type="text/css"></script>
     <script th:if="${direction} == 'container/add-product'" rel="stylesheet" th:href="@{/static/jquery-ui-datepicker/jquery-ui.js}" type="text/css"></script>
+
+    <!-- CSS dataTable -->
+    <link th:if="${direction} == 'container/post-manage'" rel="stylesheet" th:href="@{/static/css/jquery.dataTables.min.css}">
+    <script th:if="${direction} == 'container/post-manage'" th:src="@{/static/js/datatables.js}"></script>
 
 </head>

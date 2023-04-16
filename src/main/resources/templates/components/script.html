@@ -1,5 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="script">
+
+<!-- script common -->
 <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
 <!-- https://jquery.com/download/ -->
 <script th:src="@{/static/js/moment.min.js}"></script>
@@ -10,6 +12,7 @@
 <!-- https://getbootstrap.com/ -->
 <script th:src="@{/static/js/tooplate-scripts.js}"></script>
 
+<!-- script active navbar -->
 <script th:if="${direction} == 'container/products'">
     $('#productsList').addClass("active");
 </script>
@@ -18,6 +21,11 @@
 </script>
 <script th:if="${direction} == 'container/post-manage'">
     $('#postManagement').addClass("active");
+
+    <!-- script dataTable -->
+    $(document).ready(function () {
+    $('#example').DataTable();
+    });
 </script>
 <script th:if="${direction} == 'container/order-list-manage'">
     $('#orderList').addClass("active");
@@ -38,6 +46,7 @@
     $('#accountList').addClass("active");
 </script>
 
+<!-- script chart -->
 <script th:if="${direction} == 'container/init'">
     Chart.defaults.global.defaultFontColor = 'white';
     let ctxLine,
@@ -64,10 +73,15 @@
     })
 
 </script>
+
+<!-- script datepicker -->
 <script th:if="${direction} == 'container/add-product'">
     $(function() {
         $("#expire_date").datepicker();
     });
 </script>
 <script th:if="${direction} == 'container/add-product'" th:src="@{/static/jquery-ui-datepicker/jquery-ui.min.js}"></script>
+
+<!-- script dataTable -->
+<script th:if="${direction} == 'container/post-manage'" th:src="@{/static/js/datatables.min.js}"></script>
 </body>
