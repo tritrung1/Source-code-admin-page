@@ -35,6 +35,11 @@
     <!-- script dataTable -->
     $('#order-list-table').DataTable();
 </script>
+<script th:if="${direction} == 'container/news'">
+    $('#newsList').addClass("active");
+    <!-- script dataTable -->
+    $('#news-table').DataTable();
+</script>
 <script th:if="${direction} == 'container/notification-manage'">
     $('#notificationList').addClass("active");
 </script>
