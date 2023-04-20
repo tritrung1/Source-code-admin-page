@@ -72,4 +72,10 @@ public class MainController {
         model.addAttribute("direction", "container/edit-product");
         return "index";
     }
+
+    @GetMapping("/news")
+    public String news(Model model) {
+        model.addAttribute("direction", "container/news");
+        return "index";
+    }
 }
