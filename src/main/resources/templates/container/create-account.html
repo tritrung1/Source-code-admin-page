@@ -10,9 +10,9 @@
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                     </a>
                 </div>
-                <button class="btn btn-primary btn-block text-uppercase">
-                    Upload New Photo
-                </button>
+                <input id="fileInput" type="file" style="display:none;" />
+                <input type="button" class="btn btn-primary btn-block mx-auto" value="UPLOAD PRODUCT IMAGE"
+                       onclick="document.getElementById('fileInput').click();" />
             </div>
         </div>
         <div class="tm-block-col tm-col-account-settings">
@@ -24,7 +24,7 @@
                         <input id="name" name="name" type="text" class="form-control validate" />
                     </div>
                     <div class="form-group col-lg-6">
-                        <label for="email">Account Email</label>
+                        <label for="email">Email</label>
                         <input id="email" name="email" type="email" class="form-control validate" />
                     </div>
                     <div class="form-group col-lg-6">
@@ -41,7 +41,15 @@
                     </div>
                     <div class="form-group col-lg-6">
                         <label for="role">Role</label>
-                        <input id="role" name="role" type="role" class="form-control validate" />
+                        <select class="custom-select tm-select-accounts" id="role">
+                            <option selected>Select role</option>
+                            <option value="1">Merchant</option>
+                            <option value="2">User</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="address">Address</label>
+                        <input id="address" name="address" type="address" class="form-control validate" />
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-block text-uppercase">
