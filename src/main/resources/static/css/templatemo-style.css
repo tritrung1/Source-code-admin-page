@@ -334,6 +334,13 @@ thead {
   transition: all 0.2s ease;
   max-width: 100%;
 }
+.btn-report {
+  color: red;
+  background-color: red;
+  border: 2px solid red;
+  font-size: 90%;
+  font-weight: 600;
+}
 .btn-small {
   padding: 10px 24px;
 }
