@@ -1,15 +1,19 @@
-.custom-report {
+.custom-col {
     margin-top: 3rem;
     margin-bottom: 3rem;
     color: #fff;
     border: #333;
-    text-align: center;
+    text-align: right;
+    right: 10px;
+}
 
-    width: 80%;
+.custom-report {
+    width: 25%;
     position: relative;
 }
 .custom-btn {
     color: #195236;
     background-color: #088afe;
-    border-color: #6c757d}
+    border-color: #6c757d solid;
+    position: relative;
 }
