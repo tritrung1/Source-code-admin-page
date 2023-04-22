@@ -12,4 +12,11 @@ public interface ApiPath {
     String USER_DELETE = API + "/user/delete";
     String USER_UPDATE = API + "/user/update";
     String USER_BY_ID = API + "/user/{id}";
+
+    //notification
+    String NOTIFICATION_GET_ALL = API + "/notifications";
+    String NOTIFICATION_CREATE = API + "/notification/create";
+    String NOTIFICATION_DELETE = API + "/notification/delete";
+    String NOTIFICATION_UPDATE = API + "/notification/update";
+    String NOTIFICATION_BY_ID = API + "/notification/{id}";
 }
