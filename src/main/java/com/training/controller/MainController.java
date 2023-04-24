@@ -1,13 +1,22 @@
 package com.training.controller;
 
+import com.training.dto.CategoryDTO;
+import com.training.dto.ProductDTO;
+import com.training.servcie.CategoryService;
+import com.training.servcie.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class MainController {
-
+    @Autowired
+    ProductService productService;
+    @Autowired
+    CategoryService categoryService;
     @GetMapping("/login")
     public String login() {
         return "login_file";
@@ -22,6 +31,13 @@ public class MainController {
     @RequestMapping("/products")
     public String products(Model model) {
         model.addAttribute("direction","container/products");
+
+        List<ProductDTO> products = productService.findAll();
+        model.addAttribute("products", products);
+
+        List<CategoryDTO> categories = categoryService.findAll();
+        model.addAttribute("categories", categories);
+
         return "index";
     }
 
@@ -61,16 +77,31 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/add-product")
+    @GetMapping("/add-product")
     public String addProduct(Model model) {
         model.addAttribute("direction","container/add-product");
+        ProductDTO productDTO = new ProductDTO();
+        model.addAttribute("productDTO", productDTO);
         return "index";
+    }
+    @PostMapping("/save-product")
+    public String saveProduct(@ModelAttribute("productDTO") ProductDTO productDTO) {
+        productService.save(productDTO);
+        return "redirect:/products";
     }
 
     @GetMapping("/edit-product")
     public String editProduct(Model model) {
         model.addAttribute("direction", "container/edit-product");
         return "index";
+    }
+
+    @GetMapping("/delete-product/{id}")
+    public String deleteProduct(@PathVariable(value ="id") Long id) {
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(id);
+        productService.delete(productDTO);
+        return "redirect:/products";
     }
 
     @GetMapping("/news")
