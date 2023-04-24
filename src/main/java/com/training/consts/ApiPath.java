@@ -19,4 +19,11 @@ public interface ApiPath {
     String NOTIFICATION_DELETE = API + "/notification/delete";
     String NOTIFICATION_UPDATE = API + "/notification/update";
     String NOTIFICATION_BY_ID = API + "/notification/{id}";
+
+    //news
+    String NEWS_GET_ALL = API + "/news";
+    String NEWS_CREATE = API + "/news/create";
+    String NEWS_DELETE = API + "/news/delete";
+    String NEWS_UPDATE = API + "/news/update";
+    String NEWS_BY_ID = API + "/news/{id}";
 }

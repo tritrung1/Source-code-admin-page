@@ -1,4 +1,4 @@
-package com.training.servcie;
+package com.training.service;
 
 import java.util.List;
 

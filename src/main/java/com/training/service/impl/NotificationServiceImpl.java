@@ -1,10 +1,10 @@
-package com.training.servcie.impl;
+package com.training.service.impl;
 
 import com.training.dto.NotificationDTO;
 import com.training.entity.Notification;
 import com.training.mapper.NotificationMapper;
 import com.training.repository.NotificationRepository;
-import com.training.servcie.NotificationService;
+import com.training.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

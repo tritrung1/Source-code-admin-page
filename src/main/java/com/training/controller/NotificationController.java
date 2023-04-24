@@ -3,7 +3,7 @@ package com.training.controller;
 import com.training.consts.ApiPath;
 import com.training.dto.NotificationDTO;
 import com.training.repository.NotificationRepository;
-import com.training.servcie.NotificationService;
+import com.training.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,27 +23,27 @@ public class NotificationController {
     }
 
     @PostMapping(value = ApiPath.NOTIFICATION_CREATE)
-    public NotificationDTO newUser(@RequestBody NotificationDTO newNotification) {
+    public NotificationDTO newNotification(@RequestBody NotificationDTO newNotification) {
         return service.save(newNotification);
     }
 
     @GetMapping(value = ApiPath.NOTIFICATION_GET_ALL)
-    public List<NotificationDTO> getAllUsers() {
+    public List<NotificationDTO> getAllNotifications() {
         return service.findAll();
     }
 
     @GetMapping(value = ApiPath.NOTIFICATION_BY_ID)
-    public NotificationDTO getUserById(@PathVariable Long id) {
+    public NotificationDTO getNotificationById(@PathVariable Long id) {
         return service.findById(id);
     }
 
     @PutMapping(value = ApiPath.NOTIFICATION_UPDATE)
-    public Integer updateUser(@RequestBody NotificationDTO newNotification) {
+    public Integer updateNotification(@RequestBody NotificationDTO newNotification) {
         return service.update(newNotification);
     }
 
     @DeleteMapping(value = ApiPath.NOTIFICATION_DELETE)
-    public String deleteUser(@RequestBody NotificationDTO newNotification) {
+    public String deleteNotification(@RequestBody NotificationDTO newNotification) {
         boolean isDelete = service.delete(newNotification);
         return  isDelete ? "Delete success!!!" : "Delete fail!!!";
     }

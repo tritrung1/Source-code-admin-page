@@ -1,10 +1,10 @@
-package com.training.servcie.impl;
+package com.training.service.impl;
 
 import com.training.dto.UserDTO;
 import com.training.entity.User;
 import com.training.mapper.UserMapper;
 import com.training.repository.UserRepository;
-import com.training.servcie.UserService;
+import com.training.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

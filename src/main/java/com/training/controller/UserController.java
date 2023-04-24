@@ -3,7 +3,7 @@ package com.training.controller;
 import com.training.consts.ApiPath;
 import com.training.dto.UserDTO;
 import com.training.repository.UserRepository;
-import com.training.servcie.UserService;
+import com.training.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
