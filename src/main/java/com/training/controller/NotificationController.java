@@ -17,11 +17,6 @@ public class NotificationController {
     @Autowired
     NotificationService service;
 
-    @GetMapping(value = ApiPath.PING)
-    public String ping() {
-        return "Ping!!!!!!!!";
-    }
-
     @PostMapping(value = ApiPath.NOTIFICATION_CREATE)
     public NotificationDTO newNotification(@RequestBody NotificationDTO newNotification) {
         return service.save(newNotification);
