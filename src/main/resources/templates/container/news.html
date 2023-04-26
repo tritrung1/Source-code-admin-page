@@ -8,7 +8,7 @@
                     <table class="table table-hover tm-table-small tm-product-table display" id="news-table">
                         <thead>
                         <tr>
-                            <th scope="col">PUSH ID</th>
+                            <th scope="col">&nbsp;</th>
                             <th scope="col">PUSH CODE</th>
                             <th scope="col">PUSH DATE</th>
                             <th scope="col">ACCOUNT NAME</th>
@@ -18,15 +18,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="tm-user-id">ND110</td>
-                            <td>ND110</td>
-                            <td>Jan 13th, 2019</td>
-                            <td class="tm-user-name">Harry Kane</td>
-                            <td>May 5th, 2020</td>
-                            <td>White Male T-Shirt 1</td>
+                        <tr th:each="news:${news}">
+                            <th scope="row" th:text="${news.id}"><input type="checkbox" /></th>
+                            <td th:text="${news.pushCode}"/>
+                            <td th:text="${news.pushDate}"/>
+                            <td class="tm-user-name" th:text="${news.accountId}"/>
+                            <td th:text="${news.expiredDate}"/>
+                            <td th:text="${news.product.productName}"/>
                             <td>
-                                <a href="#" class="tm-product-update-link">
+                                <a th:href="@{'/delete-news/' + ${news.id}}" class="tm-product-update-link">
                                     <i class="fas fa-arrow-up tm-product-update-icon"></i>
                                 </a>
                             </td>

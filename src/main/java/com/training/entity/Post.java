@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,6 +21,10 @@ public class Post implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "post_id")
+    @GeneratedValue
+    private UUID postId;
+
     @Column(name = "expired_date")
     private Date expiredDate;
 
@@ -30,8 +34,7 @@ public class Post implements Serializable {
     @Column(name = "active")
     private Boolean active;
 
-    @Column(name = "created_date", insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date")
     private Date createdDate;
 
     @Column(name = "modified_date")

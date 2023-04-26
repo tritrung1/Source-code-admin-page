@@ -1,10 +1,10 @@
-package com.training.servcie.impl;
+package com.training.service.impl;
 
 import com.training.dto.CategoryDTO;
 import com.training.entity.Category;
 import com.training.mapper.CategoryMapper;
 import com.training.repository.CategoryRepository;
-import com.training.servcie.CategoryService;
+import com.training.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

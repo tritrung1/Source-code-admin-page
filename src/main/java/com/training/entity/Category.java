@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 import java.util.UUID;
 
@@ -28,8 +28,7 @@ public class Category implements Serializable {
     @Column(name = "category_name")
     private String categoryName;
 
-    @Column(name = "created_date", insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date")
     private Date createdDate;
 
     @Column(name = "modified_date")

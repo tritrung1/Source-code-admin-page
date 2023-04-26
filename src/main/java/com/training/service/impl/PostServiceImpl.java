@@ -1,12 +1,10 @@
-package com.training.servcie.impl;
+package com.training.service.impl;
 
-import com.training.dto.CategoryDTO;
 import com.training.dto.PostDTO;
-import com.training.entity.Category;
 import com.training.entity.Post;
 import com.training.mapper.PostMapper;
 import com.training.repository.PostRepository;
-import com.training.servcie.PostService;
+import com.training.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

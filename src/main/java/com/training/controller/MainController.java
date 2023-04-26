@@ -1,9 +1,13 @@
 package com.training.controller;
 
 import com.training.dto.CategoryDTO;
+import com.training.dto.NewsDTO;
+import com.training.dto.NotificationDTO;
 import com.training.dto.ProductDTO;
-import com.training.servcie.CategoryService;
-import com.training.servcie.ProductService;
+import com.training.service.CategoryService;
+import com.training.service.NewsService;
+import com.training.service.NotificationService;
+import com.training.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +21,10 @@ public class MainController {
     ProductService productService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    NewsService newsService;
+    @Autowired
+    NotificationService notificationService;
     @GetMapping("/login")
     public String login() {
         return "login_file";
@@ -62,6 +70,10 @@ public class MainController {
     @RequestMapping("/notification-manage")
     public String notification(Model model) {
         model.addAttribute("direction","container/notification-manage");
+
+        List<NotificationDTO> notifications = notificationService.findAll();
+        model.addAttribute("notifications", notifications);
+
         return "index";
     }
 
@@ -107,6 +119,10 @@ public class MainController {
     @GetMapping("/news")
     public String news(Model model) {
         model.addAttribute("direction", "container/news");
+
+        List<NewsDTO> news = newsService.findAll();
+        model.addAttribute("news", news);
+
         return "index";
     }
 }
