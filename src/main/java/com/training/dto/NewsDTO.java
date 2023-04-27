@@ -5,12 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewsDTO {
+public class NewsDTO implements Serializable {
     private Long id;
     private String pushCode;
     private Date pushDate;

@@ -16,39 +16,39 @@ import java.util.stream.Collectors;
 @Service
 public class NotificationServiceImpl implements NotificationService {
     @Autowired
-    NotificationRepository repository;
+    NotificationRepository notificationRepository;
 
     @Autowired
-    NotificationMapper mapper;
+    NotificationMapper notificationMapper;
     @Override
     public List<NotificationDTO> findAll() {
-        List<Notification> notifications = repository.findAll();
+        List<Notification> notifications = notificationRepository.findAll();
         return notifications == null || notifications.size() == 0 ? new ArrayList<>()
-                : notifications.stream().map(item -> mapper.convertEntityToDTO(item))
+                : notifications.stream().map(item -> notificationMapper.convertEntityToDTO(item))
                 .collect(Collectors.toList());
     }
 
     @Override
     public NotificationDTO findById(Long id) {
-        Optional<Notification> notification = repository.findById(id);
-        return notification != null && notification.isPresent() ? mapper.convertEntityToDTO(notification.get())
+        Optional<Notification> notification = notificationRepository.findById(id);
+        return notification != null && notification.isPresent() ? notificationMapper.convertEntityToDTO(notification.get())
                 : new NotificationDTO();
     }
 
     @Override
     public NotificationDTO save(NotificationDTO notificationDTO) {
         if (notificationDTO == null) return new NotificationDTO();
-        Notification notification = repository.save(mapper.convertDTOToEntity(notificationDTO));
-        return notification == null ? new NotificationDTO() : mapper.convertEntityToDTO(notification);
+        Notification notification = notificationRepository.save(notificationMapper.convertDTOToEntity(notificationDTO));
+        return notification == null ? new NotificationDTO() : notificationMapper.convertEntityToDTO(notification);
     }
 
     @Override
     public int update(NotificationDTO notificationDTO) {
         if (notificationDTO == null || notificationDTO.getId() == null) return -1;
-        Optional<Notification> notification = repository.findById(notificationDTO.getId());
+        Optional<Notification> notification = notificationRepository.findById(notificationDTO.getId());
         if (notification != null && notification.isPresent()) {
             //update
-            Notification notificationUpdate = repository.save(mapper.convertDTOToEntity(notificationDTO));
+            Notification notificationUpdate = notificationRepository.save(notificationMapper.convertDTOToEntity(notificationDTO));
             return notificationUpdate == null ? 0 : 1;
         }
         return -1;
@@ -58,10 +58,10 @@ public class NotificationServiceImpl implements NotificationService {
     public boolean delete(NotificationDTO notificationDTO) {
         try {
             if (notificationDTO == null || notificationDTO.getId() == null) return false;
-            Optional<Notification> notification = repository.findById(notificationDTO.getId());
+            Optional<Notification> notification = notificationRepository.findById(notificationDTO.getId());
             if (notification != null && notification.isPresent()) {
                 //delete
-                repository.delete(notification.get());
+                notificationRepository.delete(notification.get());
                 return true;
             }
             return false;

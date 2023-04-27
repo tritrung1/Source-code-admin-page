@@ -16,39 +16,39 @@ import java.util.stream.Collectors;
 @Service
 public class NewsServiceImpl implements NewsService {
     @Autowired
-    NewsRepository repository;
+    NewsRepository newsRepository;
 
     @Autowired
-    NewsMapper mapper;
+    NewsMapper newsMapper;
     @Override
     public List<NewsDTO> findAll() {
-        List<News> news = repository.findAll();
+        List<News> news = newsRepository.findAll();
         return news == null || news.size() == 0 ? new ArrayList<>()
-                : news.stream().map(item -> mapper.convertEntityToDTO(item))
+                : news.stream().map(item -> newsMapper.convertEntityToDTO(item))
                 .collect(Collectors.toList());
     }
 
     @Override
     public NewsDTO findById(Long id) {
-        Optional<News> news = repository.findById(id);
-        return news != null && news.isPresent() ? mapper.convertEntityToDTO(news.get())
+        Optional<News> news = newsRepository.findById(id);
+        return news != null && news.isPresent() ? newsMapper.convertEntityToDTO(news.get())
                 : new NewsDTO();
     }
 
     @Override
     public NewsDTO save(NewsDTO newsDTO) {
         if (newsDTO == null) return new NewsDTO();
-        News news = repository.save(mapper.convertDTOToEntity(newsDTO));
-        return news == null ? new NewsDTO() : mapper.convertEntityToDTO(news);
+        News news = newsRepository.save(newsMapper.convertDTOToEntity(newsDTO));
+        return news == null ? new NewsDTO() : newsMapper.convertEntityToDTO(news);
     }
 
     @Override
     public int update(NewsDTO newsDTO) {
         if (newsDTO == null || newsDTO.getId() == null) return -1;
-        Optional<News> news = repository.findById(newsDTO.getId());
+        Optional<News> news = newsRepository.findById(newsDTO.getId());
         if (news != null && news.isPresent()) {
             //update
-            News newsUpdate = repository.save(mapper.convertDTOToEntity(newsDTO));
+            News newsUpdate = newsRepository.save(newsMapper.convertDTOToEntity(newsDTO));
             return newsUpdate == null ? 0 : 1;
         }
         return -1;
@@ -58,10 +58,10 @@ public class NewsServiceImpl implements NewsService {
     public boolean delete(NewsDTO newsDTO) {
         try {
             if (newsDTO == null || newsDTO.getId() == null) return false;
-            Optional<News> news = repository.findById(newsDTO.getId());
+            Optional<News> news = newsRepository.findById(newsDTO.getId());
             if (news != null && news.isPresent()) {
                 //delete
-                repository.delete(news.get());
+                newsRepository.delete(news.get());
                 return true;
             }
             return false;
