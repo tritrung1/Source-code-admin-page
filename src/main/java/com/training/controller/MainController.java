@@ -1,4 +1,5 @@
 package com.training.controller;
+<<<<<<< Updated upstream
 
 import com.training.dto.CategoryDTO;
 import com.training.dto.NewsDTO;
@@ -8,16 +9,28 @@ import com.training.service.CategoryService;
 import com.training.service.NewsService;
 import com.training.service.NotificationService;
 import com.training.service.ProductService;
+=======
+import com.training.dto.AccountDTO;
+import com.training.servcie.AccountService;
+import com.training.servcie.impl.AccountServiceImpl;
+>>>>>>> Stashed changes
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+<<<<<<< Updated upstream
+=======
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+>>>>>>> Stashed changes
 
 @Controller
 public class MainController {
     @Autowired
+<<<<<<< Updated upstream
     ProductService productService;
     @Autowired
     CategoryService categoryService;
@@ -25,6 +38,16 @@ public class MainController {
     NewsService newsService;
     @Autowired
     NotificationService notificationService;
+=======
+//    AccountController accountController;
+    AccountService accountService;
+//
+//    @Autowired
+//    AccountRepository accountRepository;
+//
+//    @Autowired
+//    AccountMapper accountMapper;
+>>>>>>> Stashed changes
     @GetMapping("/login")
     public String login() {
         return "login_file";
@@ -48,13 +71,52 @@ public class MainController {
 
         return "index";
     }
-
-    @RequestMapping("/accounts")
+    // start account
+    @GetMapping("/accounts")
     public String accounts(Model model) {
+        List<AccountDTO> accounts = accountService.findAll();
         model.addAttribute("direction","container/accounts");
+        model.addAttribute("accountList", accounts );
         return "index";
     }
 
+    @PostMapping("/update-account")
+    public String updateAccount(@ModelAttribute("accountDTO")AccountDTO accountDTO) {
+        accountService.save(accountDTO);
+        return "redirect:/accounts";
+    }
+
+    @GetMapping (value = "/update-account-form/{id}")
+    public String updateAccountForm(Model model, @PathVariable(value ="id") Long id)  {
+        model.addAttribute("direction", "container/update-account");
+
+        AccountDTO accountDTO = accountService.findById(id);
+
+        model.addAttribute("accountDTO", accountDTO);
+        return "index";
+    }
+    @PostMapping(value = "/create-account")
+    public String createAccount(@ModelAttribute("accountDTO")AccountDTO accountDTO) {
+        accountService.save(accountDTO);
+        return "redirect:/accounts";
+    }
+
+    @GetMapping(value = "/create-account-form")
+    public String createAccountForm(Model model) {
+        model.addAttribute("direction", "container/create-account");
+        AccountDTO accountDTO = new AccountDTO();
+        model.addAttribute("accountDTO", accountDTO);
+        return "index";
+    }
+
+    @RequestMapping(value = "/delete-account/{id}")
+    public String deleteAccount(@PathVariable(value ="id") Long id) {
+        AccountDTO createAccount = accountService.findById(id);
+        accountService.delete(createAccount);
+        return "redirect:/accounts";
+    }
+
+    // end account
     @RequestMapping("/post-manage")
     public String postManage(Model model) {
         model.addAttribute("direction","container/post-manage");
@@ -77,17 +139,6 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/create-account")
-    public String createAccount(Model model) {
-        model.addAttribute("direction","container/create-account");
-        return "index";
-    }
-
-    @GetMapping("/update-account")
-    public String updateAccount(Model model) {
-        model.addAttribute("direction", "container/update-account");
-        return "index";
-    }
 
     @GetMapping("/add-product")
     public String addProduct(Model model) {

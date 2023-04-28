@@ -10,7 +10,8 @@
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                     </a>
                 </div>
-                <button class="btn btn-primary btn-block text-uppercase">
+                <button class="btn btn-primary btn-block text-uppercase"
+                        onclick="document.getElementById('fileInput').click();">
                     Upload New Photo
                 </button>
             </div>
@@ -18,34 +19,47 @@
         <div class="tm-block-col tm-col-account-settings">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
                 <h2 class="tm-block-title">Update Info</h2>
-                <form action="" class="tm-signup-form row">
+                <form th:action="@{/update-account}" method="post" class="tm-signup-form row" th:object="${accountDTO}">
                     <div class="form-group col-lg-6">
                         <label for="name">Account Name</label>
-                        <input id="name" name="name" type="text" class="form-control validate" />
+                        <input type="hidden" th:field="*{id}" />
+                        <input th:field="*{name}" id="name" name="name" type="text" class="form-control validate" />
                     </div>
                     <div class="form-group col-lg-6">
-                        <label for="email">Account Email</label>
-                        <input id="email" name="email" type="email" class="form-control validate" />
-                    </div>
-                    <div class="form-group col-lg-6">
-                        <label for="password">Password</label>
-                        <input id="password" name="password" type="password" class="form-control validate" />
-                    </div>
-                    <div class="form-group col-lg-6">
-                        <label for="password2">Re-enter Password</label>
-                        <input id="password2" name="password2" type="password" class="form-control validate" />
+                        <label for="email">Email</label>
+                        <input th:field="*{email}" id="email" name="email" type="email" class="form-control validate" />
                     </div>
                     <div class="form-group col-lg-6">
                         <label for="phone">Phone</label>
-                        <input id="phone" name="phone" type="tel" class="form-control validate" />
+                        <input th:field="*{phone}" id="phone" name="phone" type="tel" class="form-control validate" />
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="address">Address</label>
+                        <input th:field="*{address}" id="address" name="address" type="address" class="form-control validate" />
                     </div>
                     <div class="form-group col-lg-6">
                         <label for="role">Role</label>
-                        <input id="role" name="role" type="role" class="form-control validate" />
+                        <select class="custom-select tm-select-accounts" id="role">
+                            <option selected>Select role</option>
+                            <option value="1">Merchant</option>
+                            <option value="2">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="accountImage">Account Image</label>
+                        <input th:field="*{account_img}" id="accountImage" name="accountImage" type="text" class="form-control validate" />
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="BannerImage">Banner Image</label>
+                        <input th:field="*{banner_img}" id="BannerImage" name="BannerImage" type="text" class="form-control validate" />
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="Active">Active</label>
+                        <input th:field="*{active}" id="Active" name="Active" type="text" class="form-control validate"/>
                     </div>
                     <div class="form-group col-lg-6">
                         <label class="tm-hide-sm">&nbsp;</label>
-                        <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                        <button type="submit" class="btn btn-primary btn-block text-uppercase" >
                             Update Your Profile
                         </button>
                     </div>

@@ -6,6 +6,7 @@ public interface ApiPath {
     //ping
     String PING = API + "/ping";
 
+<<<<<<< Updated upstream
     //notification
     String NOTIFICATION_GET_ALL = API + "/notifications";
     String NOTIFICATION_CREATE = API + "/notification/create";
@@ -57,17 +58,48 @@ public interface ApiPath {
 
     //account
     String ACCOUNT_GET_ALL = API + "/accounts";
+=======
+    //user
+    String USER_GET_ALL = API + "/users";
+    String USER_CREATE = API + "/user/create";
+    String USER_DELETE = API + "/user/delete";
+    String USER_UPDATE = API + "/user/update";
+    String USER_BY_ID = API + "/user/{id}";
+
+ // Order API
+    String ORDER_GET_ALL = API + "/order";
+    String ORDER_CREATE = API + "/order/create";
+    String ORDER_DELETE = API + "/order/delete";
+    String ORDER_UPDATE = API + "/order/update";
+    String ORDER_BY_ID = API + "/order/{id}";
+
+    //Role API
+    String ROLE_GET_ALL = API + "/role";
+    String ROLE_CREATE = API + "/role/create";
+    String ROLE_DELETE = API + "/role/delete";
+    String ROLE_UPDATE = API + "/role/update";
+    String ROLE_BY_ID = API + "/role/{id}";
+
+    //Account API
+    String ACCOUNT_GET_ALL = API + "/account";
+>>>>>>> Stashed changes
     String ACCOUNT_CREATE = API + "/account/create";
     String ACCOUNT_DELETE = API + "/account/delete";
     String ACCOUNT_UPDATE = API + "/account/update";
     String ACCOUNT_BY_ID = API + "/account/{id}";
 
+<<<<<<< Updated upstream
     //report
     String REPORT_GET_ALL = API + "/reports";
+=======
+    //Report API
+    String REPORT_GET_ALL = API + "/report";
+>>>>>>> Stashed changes
     String REPORT_CREATE = API + "/report/create";
     String REPORT_DELETE = API + "/report/delete";
     String REPORT_UPDATE = API + "/report/update";
     String REPORT_BY_ID = API + "/report/{id}";
+<<<<<<< Updated upstream
 
     //role
     String ROLE_GET_ALL = API + "/roles";
@@ -75,4 +107,6 @@ public interface ApiPath {
     String ROLE_DELETE = API + "/role/delete";
     String ROLE_UPDATE = API + "/role/update";
     String ROLE_BY_ID = API + "/role/{id}";
+=======
+>>>>>>> Stashed changes
 }

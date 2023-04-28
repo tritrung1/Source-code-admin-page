@@ -3,6 +3,7 @@ package com.training.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+<<<<<<< Updated upstream
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,11 +15,25 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "account")
+=======
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.UUID;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name ="Account")
+>>>>>>> Stashed changes
 public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+<<<<<<< Updated upstream
 
     @Column(name = "account_img")
     private String accountImg;
@@ -63,4 +78,44 @@ public class Account implements Serializable {
     @Column(name = "modified_by")
     private String modifiedBy;
 
+=======
+    @Column(name = "account_id")
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    private UUID account_id;
+    @Column(name = "merchant_id")
+    private Long merchant_id;
+    @Column(name = "role_id")
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    private UUID role_id; // add relationship to role_id
+    @Column(name = "name")
+    private String name;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "account_img")
+    private String account_img;
+    @Column(name = "banner_img")
+    private String banner_img;
+    @Column(name = "active")
+    private Boolean active;
+    @Column(name = "created_date")
+    private String created_date;
+    @Column(name = "created_by")
+    private String created_by;
+    @Column(name = "modified_date")
+    private String modified_date;
+    @Column(name = "modified_by")
+    private String modified_by;
+>>>>>>> Stashed changes
 }
