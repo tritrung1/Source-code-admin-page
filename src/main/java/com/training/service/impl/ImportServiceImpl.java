@@ -6,12 +6,13 @@ import com.training.mapper.ImportMapper;
 import com.training.repository.ImportRepository;
 import com.training.service.ImportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@Service
 public class ImportServiceImpl implements ImportService {
     @Autowired
     ImportRepository importRepository;

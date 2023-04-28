@@ -120,4 +120,6 @@ public interface ApiPath {
     String CUSTOMER_UPDATE = API + "/customer/update";
     String CUSTOMER_BY_ID = API + "/customer/{id}";
 
+
+
 }
