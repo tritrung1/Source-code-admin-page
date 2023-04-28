@@ -1,22 +1,30 @@
 package com.training.service.impl;
 
 import com.training.dto.ReportDTO;
+import com.training.entity.Product;
 import com.training.entity.Report;
 import com.training.mapper.ReportMapper;
+import com.training.repository.ProductRepository;
 import com.training.repository.ReportRepository;
+import com.training.service.ProductService;
 import com.training.service.ReportService;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class ReportServiceImpl implements ReportService {
     @Autowired
     ReportRepository reportRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     @Autowired
     ReportMapper reportMapper;
@@ -70,5 +78,25 @@ public class ReportServiceImpl implements ReportService {
             ex.printStackTrace();
             return false;
         }
+    }
+    @Override
+    public String exportReport(String reportType) throws FileNotFoundException, JRException {
+        String path = "E:\\ASSINGMENT\\Mock Project\\report";
+        List<Product> products = productRepository.findAll();
+        //load file and compile it
+        File file = ResourceUtils.getFile("classpath:product.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(products);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("createdBy", "Thanh");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        if (reportType.equalsIgnoreCase("html")) {
+            JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\employees.html");
+        }
+        if (reportType.equalsIgnoreCase("pdf")) {
+            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\employees.pdf");
+        }
+
+        return "report generated in path : " + path;
     }
 }
