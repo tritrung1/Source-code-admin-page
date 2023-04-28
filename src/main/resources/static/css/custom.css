@@ -11,9 +11,14 @@
     width: 25%;
     position: relative;
 }
+
 .custom-btn {
     color: #195236;
     background-color: #088afe;
     border-color: #6c757d solid;
     position: relative;
+}
+
+.custom-bottom {
+    margin-bottom: 70px;
 }

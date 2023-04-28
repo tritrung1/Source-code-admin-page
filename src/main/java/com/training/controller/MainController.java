@@ -1,6 +1,9 @@
 package com.training.controller;
 <<<<<<< Updated upstream
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import com.training.dto.CategoryDTO;
 import com.training.dto.NewsDTO;
 import com.training.dto.NotificationDTO;
@@ -47,6 +50,38 @@ public class MainController {
 //
 //    @Autowired
 //    AccountMapper accountMapper;
+>>>>>>> Stashed changes
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+import com.training.dto.OrderDTO;
+import com.training.servcie.FeedbackService;
+import com.training.servcie.OrderService;
+import com.training.servcie.OrderStatusService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class MainController {
+
+    @Autowired
+    OrderService orderService;
+    @Autowired
+    FeedbackService feedbackService;
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     @GetMapping("/login")
     public String login() {
@@ -126,6 +161,7 @@ public class MainController {
     @RequestMapping("/order-list-manage")
     public String orderList(Model model) {
         model.addAttribute("direction","container/order-list-manage");
+        model.addAttribute("orders", orderService.findAll());
         return "index";
     }
 
@@ -174,6 +210,33 @@ public class MainController {
         List<NewsDTO> news = newsService.findAll();
         model.addAttribute("news", news);
 
+        return "index";
+    }
+
+    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
+    public String showUpdateForm(Model model, @RequestParam Long orderId) {
+        OrderDTO order = orderService.findById(orderId);
+        model.addAttribute("order",order);
+        model.addAttribute("direction", "container/feedback");
+        model.addAttribute("feedbacks", feedbackService.findAll());
+        return "index";
+    }
+
+    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
+    public String showUpdateForm(Model model, @RequestParam Long orderId) {
+        OrderDTO order = orderService.findById(orderId);
+        model.addAttribute("order",order);
+        model.addAttribute("direction", "container/feedback");
+        model.addAttribute("feedbacks", feedbackService.findAll());
+        return "index";
+    }
+
+    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
+    public String showUpdateForm(Model model, @RequestParam Long orderId) {
+        OrderDTO order = orderService.findById(orderId);
+        model.addAttribute("order",order);
+        model.addAttribute("direction", "container/feedback");
+        model.addAttribute("feedbacks", feedbackService.findAll());
         return "index";
     }
 }

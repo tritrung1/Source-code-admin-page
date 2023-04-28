@@ -1,0 +1,15 @@
+server:
+  port: 9090
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/db.admin
+    username: root
+    password:
+
+  rest-template:
+    read-timeout: 15000
+    connect-timeout: 15000
+#http://localhost:9090/swagger-ui.html#

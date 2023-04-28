@@ -1,7 +1,7 @@
 package com.training.repository;
 
-<<<<<<<< Updated upstream:src/main/java/com/training/repository/CategoryRepository.java
-import com.training.entity.Category;
+<<<<<<<< Updated upstream:src/main/java/com/training/repository/CustomerRepository.java
+import com.training.entity.Customer;
 ========
 import com.training.entity.Feedback;
 
@@ -11,8 +11,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-<<<<<<<< Updated upstream:src/main/java/com/training/repository/CategoryRepository.java
-public interface CategoryRepository extends JpaRepository<Category,Long>, CrudRepository<Category, Long> {
+<<<<<<<< Updated upstream:src/main/java/com/training/repository/CustomerRepository.java
+public interface CustomerRepository extends JpaRepository<Customer,Long>, CrudRepository<Customer, Long> {
 ========
 public interface FeedbackRepository extends JpaRepository<Feedback,Long>, CrudRepository<Feedback, Long> {
 >>>>>>>> Stashed changes:src/main/java/com/training/repository/FeedbackRepository.java

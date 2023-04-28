@@ -7,6 +7,9 @@ public interface ApiPath {
     String PING = API + "/ping";
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     //notification
     String NOTIFICATION_GET_ALL = API + "/notifications";
     String NOTIFICATION_CREATE = API + "/notification/create";
@@ -68,11 +71,35 @@ public interface ApiPath {
 
  // Order API
     String ORDER_GET_ALL = API + "/order";
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+    // Delivery detail
+    String DELIVERY_DETAIL_GET_ALL = API + "/delivery-details";
+    String DELIVERY_DETAIL_CREATE = API + "/delivery-detail/create";
+    String DELIVERY_DETAIL_DELETE = API + "/delivery-detail/delete";
+    String DELIVERY_DETAIL_UPDATE = API + "/delivery-detail/update";
+    String DELIVERY_DETAIL_BY_ID = API + "/delivery-detail/{id}";
+
+    // Order
+    String ORDER_GET_ALL = API + "/orders";
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     String ORDER_CREATE = API + "/order/create";
     String ORDER_DELETE = API + "/order/delete";
     String ORDER_UPDATE = API + "/order/update";
     String ORDER_BY_ID = API + "/order/{id}";
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     //Role API
     String ROLE_GET_ALL = API + "/role";
     String ROLE_CREATE = API + "/role/create";
@@ -107,6 +134,39 @@ public interface ApiPath {
     String ROLE_DELETE = API + "/role/delete";
     String ROLE_UPDATE = API + "/role/update";
     String ROLE_BY_ID = API + "/role/{id}";
+=======
+>>>>>>> Stashed changes
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+    // Feedback
+    String FEEDBACK_GET_ALL = API + "/feedbacks";
+    String FEEDBACK_CREATE = API + "/feedback/create";
+    String FEEDBACK_DELETE = API + "/feedback/delete";
+    String FEEDBACK_UPDATE = API + "/feedback/update";
+    String FEEDBACK_BY_ID = API + "/feedback/{id}";
+
+    // Order status
+    String ORDER_STATUS_GET_ALL = API + "/order-status";
+    String ORDER_STATUS_CREATE = API + "/order-status/create";
+    String ORDER_STATUS_DELETE = API + "/order-status/delete";
+    String ORDER_STATUS_UPDATE = API + "/order-status/update";
+    String ORDER_STATUS_BY_ID = API + "/order-status/{id}";
+
+    // Customer
+    String CUSTOMER_GET_ALL = API + "/customers";
+    String CUSTOMER_CREATE = API + "/customer/create";
+    String CUSTOMER_DELETE = API + "/customer/delete";
+    String CUSTOMER_UPDATE = API + "/customer/update";
+    String CUSTOMER_BY_ID = API + "/customer/{id}";
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 }
