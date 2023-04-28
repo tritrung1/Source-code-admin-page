@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 public class CategoryController {
     @Autowired
-    private CategoryRepository categoryRepository;
+    CategoryRepository categoryRepository;
 
     @Autowired
     CategoryService service;

@@ -3,18 +3,13 @@ package com.training.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-<<<<<<< Updated upstream
-
 import java.io.Serializable;
 import java.sql.Date;
-=======
->>>>>>> Stashed changes
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-<<<<<<< Updated upstream
 public class RoleDTO implements Serializable {
     private Long id;
     private UUID roleId;
@@ -23,14 +18,14 @@ public class RoleDTO implements Serializable {
     private Date modifiedDate;
     private String createdBy;
     private String modifiedBy;
-=======
-public class RoleDTO {
-    private Long id;
-    private UUID role_id;
-    private String role_name;
-    private String created_date;
-    private String created_by;
-    private String modified_date;
-    private String modified_by;
->>>>>>> Stashed changes
+//=======
+//public class RoleDTO {
+//    private Long id;
+//    private UUID role_id;
+//    private String role_name;
+//    private String created_date;
+//    private String created_by;
+//    private String modified_date;
+//    private String modified_by;
+//>>>>>>> Stashed changes
 }

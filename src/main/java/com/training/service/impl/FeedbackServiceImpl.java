@@ -1,11 +1,11 @@
-package com.training.servcie.impl;
+package com.training.service.impl;
 
 import com.fasterxml.uuid.Generators;
 import com.training.dto.FeedbackDTO;
 import com.training.entity.Feedback;
 import com.training.mapper.FeedbackMapper;
 import com.training.repository.FeedbackRepository;
-import com.training.servcie.FeedbackService;
+import com.training.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

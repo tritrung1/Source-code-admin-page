@@ -1,11 +1,11 @@
-package com.training.servcie.impl;
+package com.training.service.impl;
 
 import com.fasterxml.uuid.Generators;
 import com.training.dto.OrderStatusDTO;
 import com.training.entity.OrderStatus;
 import com.training.mapper.OrderStatusMapper;
 import com.training.repository.OrderStatusRepository;
-import com.training.servcie.OrderStatusService;
+import com.training.service.OrderStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

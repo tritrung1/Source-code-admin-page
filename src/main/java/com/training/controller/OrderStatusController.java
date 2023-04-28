@@ -2,8 +2,7 @@ package com.training.controller;
 
 import com.training.consts.ApiPath;
 import com.training.dto.OrderStatusDTO;
-import com.training.repository.OrderStatusRepository;
-import com.training.servcie.OrderStatusService;
+import com.training.service.OrderStatusService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

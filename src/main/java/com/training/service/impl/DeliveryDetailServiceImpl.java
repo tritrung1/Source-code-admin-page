@@ -1,11 +1,11 @@
-package com.training.servcie.impl;
+package com.training.service.impl;
 
 import com.fasterxml.uuid.Generators;
 import com.training.dto.DeliveryDetailDTO;
 import com.training.entity.DeliveryDetail;
 import com.training.mapper.DeliveryDetailMapper;
 import com.training.repository.DeliveryDetailRepository;
-import com.training.servcie.DeliveryDetailService;
+import com.training.service.DeliveryDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,11 @@
-package com.training.servcie.impl;
+package com.training.service.impl;
 
 import com.fasterxml.uuid.Generators;
 import com.training.dto.CustomerDTO;
 import com.training.entity.Customer;
 import com.training.mapper.CustomerMapper;
 import com.training.repository.CustomerRepository;
-import com.training.servcie.CustomerService;
+import com.training.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

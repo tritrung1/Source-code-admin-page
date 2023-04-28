@@ -7,37 +7,6 @@
                 <table class="table table-hover tm-table-small tm-product-table" id="order-list-table">
             <thead>
             <tr>
-                <th scope="col">ORDER ID</th>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                <th scope="col">ORDER CODE</th>
-                <th scope="col">ACCOUNT NAME</th>
-                <th scope="col">PRODUCT NAME</th>
-                <th scope="col">PAYMENT METHOD</th>
-                <th scope="col">DELIVERY DATE</th>
-                <th scope="col">DELIVERY DETAIL</th>
-                <th scope="col">SHIPPING COST</th>
-                <th scope="col">QUANTITY </th>
-                <th scope="col">ORDER DATE</th>
-                <th scope="col">MODIFIED DATE</th>
-                <th scope="col">ORDER STATUS</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row"><b>#122349</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-=======
                 <th scope="col">CUSTOMER NAME</th>
                 <th scope="col">CUSTOMER PHONE</th>
                 <th scope="col">PRODUCT NAME</th>
@@ -52,241 +21,25 @@
             </tr>
             </thead>
             <tbody>
-=======
-                <th scope="col">CUSTOMER NAME</th>
-                <th scope="col">CUSTOMER PHONE</th>
-                <th scope="col">PRODUCT NAME</th>
-                <th scope="col">QUANTITY</th>
-                <th scope="col">PRICE</th>
-                <th scope="col">PAYMENT METHOD</th>
-                <th scope="col">DELIVERY DATE</th>
-                <th scope="col">SHIPPING UNIT</th>
-                <th scope="col">SHIPPER PHONE</th>
-                <th scope="col">ODER STATUS</th>
-                <th scope="col">FEEDBACK</th>
-            </tr>
-            </thead>
-            <tbody>
->>>>>>> Stashed changes
-=======
-                <th scope="col">CUSTOMER NAME</th>
-                <th scope="col">CUSTOMER PHONE</th>
-                <th scope="col">PRODUCT NAME</th>
-                <th scope="col">QUANTITY</th>
-                <th scope="col">PRICE</th>
-                <th scope="col">PAYMENT METHOD</th>
-                <th scope="col">DELIVERY DATE</th>
-                <th scope="col">SHIPPING UNIT</th>
-                <th scope="col">SHIPPER PHONE</th>
-                <th scope="col">ODER STATUS</th>
-                <th scope="col">FEEDBACK</th>
-            </tr>
-            </thead>
-            <tbody>
->>>>>>> Stashed changes
+
             <tr th:each="order: ${orders}">
                 <td><b th:text="${order.id}" /></td>
                 <td><b th:text="${order.customer.lastName}" /></td>
                 <td><b th:text="${order.customer.customerPhone}" /></td>
-                <td>Quan ao</td>
-                <td>200</td>
                 <td><b th:text="${order.price}" /></td>
                 <td><b th:text="${order.paymentMethod}" /></td>
                 <td><b th:text="${order.deliveryDetail.deliveryDate}" /></td>
                 <td><b th:text="${order.deliveryDetail.shippingUnit}" /></td>
                 <td><b th:text="${order.deliveryDetail.shipperPhone}" /></td>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
                 <td>
                     <div class="tm-status-circle moving" >
                     </div><b th:text="${order.orderStatus.name}" />
                 </td>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            </tr>
-            <tr>
-                <th scope="row"><b>#122348</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle pending">
-                    </div>Pending
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><b>#122347</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle cancelled">
-                    </div>Cancelled
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><b>#122346</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle moving">
-                    </div>Moving
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><b>#122345</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle pending">
-                    </div>Pending
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><b>#122344</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle pending">
-                    </div>Pending
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><b>#122343</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle moving">
-                    </div>Moving
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><b>#122342</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle moving">
-                    </div>Moving
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><b>#122341</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle moving">
-                    </div>Moving
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><b>#122340</b></th>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle cancelled">
-                    </div>Cancelled
-                </td>
-            </tr>
-            <tr>
-                <td><b>ALKMU89EFF</b></td>
-                <td><b>089645</b></td>
-                <td><b>GUCCI SHOE</b></td>
-                <td><b>Credit card</b></td>
-                <td><b>16:00, 12 NOV 2018</b></td>
-                <td><b>dont break ma stuff</b></td>
-                <td><b>$30</b></td>
-                <td><b>6</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td><b>16:00, 18 NOV 2018</b></td>
-                <td>
-                    <div class="tm-status-circle moving">
-                    </div>Moving
-                </td>
-=======
                 <td><a th:href="@{/detailFeedback(orderId=${order.feedback.id})}">Detail</a></td>
->>>>>>> Stashed changes
-=======
+
                 <td><a th:href="@{/detailFeedback(orderId=${order.feedback.id})}">Detail</a></td>
->>>>>>> Stashed changes
-=======
+
                 <td><a th:href="@{/detailFeedback(orderId=${order.feedback.id})}">Detail</a></td>
->>>>>>> Stashed changes
             </tr>
             </tbody>
         </table>

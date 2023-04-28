@@ -3,7 +3,7 @@ package com.training.controller;
 import com.training.consts.ApiPath;
 import com.training.dto.OrderDTO;
 import com.training.repository.OrderRepository;
-import com.training.servcie.OrderService;
+import com.training.service.impl.OrderServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,10 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    OrderService service;
+    OrderRepository orderRepository;
+
+    @Autowired
+    OrderServiceImpl service;
 
     @PostMapping(value = ApiPath.ORDER_CREATE)
     public OrderDTO newOrder(@RequestBody OrderDTO newOrder) {

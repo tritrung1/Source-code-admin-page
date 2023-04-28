@@ -1,22 +1,10 @@
 package com.training.entity;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-<<<<<<< Updated upstream
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.UUID;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "role")
-public class Role implements Serializable {
-=======
 import java.util.UUID;
 
 @Data
@@ -24,13 +12,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Table(name ="Role")
-public class Role {
->>>>>>> Stashed changes
+public class Role implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-<<<<<<< Updated upstream
+
 
     @Column(name = "role_id")
     @GeneratedValue
@@ -50,18 +37,18 @@ public class Role {
 
     @Column(name = "modified_by")
     private String modifiedBy;
-=======
-    @Column(name = "role_id")
-    private UUID role_id;
-    @Column(name = "role_name")
-    private String role_name;
-    @Column(name = "created_date")
-    private String created_date;
-    @Column(name = "created_by")
-    private String created_by;
-    @Column(name = "modified_date")
-    private String modified_date;
-    @Column(name = "modified_by")
-    private String modified_by;
->>>>>>> Stashed changes
+//=======
+//    @Column(name = "role_id")
+//    private UUID role_id;
+//    @Column(name = "role_name")
+//    private String role_name;
+//    @Column(name = "created_date")
+//    private String created_date;
+//    @Column(name = "created_by")
+//    private String created_by;
+//    @Column(name = "modified_date")
+//    private String modified_date;
+//    @Column(name = "modified_by")
+//    private String modified_by;
+//>>>>>>> Stashed changes
 }

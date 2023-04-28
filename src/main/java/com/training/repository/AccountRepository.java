@@ -6,9 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-<<<<<<< Updated upstream
 public interface AccountRepository extends JpaRepository<Account,Long>, CrudRepository<Account, Long> {
-=======
-public interface AccountRepository extends JpaRepository<Account,Long>, CrudRepository<Account,Long> {
->>>>>>> Stashed changes
+
+
 }

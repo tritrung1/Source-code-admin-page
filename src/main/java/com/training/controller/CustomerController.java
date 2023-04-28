@@ -2,7 +2,7 @@ package com.training.controller;
 
 import com.training.consts.ApiPath;
 import com.training.dto.CustomerDTO;
-import com.training.servcie.CustomerService;
+import com.training.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

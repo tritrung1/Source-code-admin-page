@@ -1,39 +1,21 @@
 package com.training.controller;
-<<<<<<< Updated upstream
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import com.training.dto.CategoryDTO;
 import com.training.dto.NewsDTO;
 import com.training.dto.NotificationDTO;
 import com.training.dto.ProductDTO;
-import com.training.service.CategoryService;
-import com.training.service.NewsService;
-import com.training.service.NotificationService;
-import com.training.service.ProductService;
-=======
+import com.training.service.*;
+import com.training.dto.OrderDTO;
 import com.training.dto.AccountDTO;
-import com.training.servcie.AccountService;
-import com.training.servcie.impl.AccountServiceImpl;
->>>>>>> Stashed changes
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-<<<<<<< Updated upstream
-=======
-
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
->>>>>>> Stashed changes
 
 @Controller
 public class MainController {
     @Autowired
-<<<<<<< Updated upstream
     ProductService productService;
     @Autowired
     CategoryService categoryService;
@@ -41,48 +23,13 @@ public class MainController {
     NewsService newsService;
     @Autowired
     NotificationService notificationService;
-=======
-//    AccountController accountController;
+    @Autowired
     AccountService accountService;
-//
-//    @Autowired
-//    AccountRepository accountRepository;
-//
-//    @Autowired
-//    AccountMapper accountMapper;
->>>>>>> Stashed changes
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-import com.training.dto.OrderDTO;
-import com.training.servcie.FeedbackService;
-import com.training.servcie.OrderService;
-import com.training.servcie.OrderStatusService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-@Controller
-public class MainController {
-
     @Autowired
     OrderService orderService;
     @Autowired
     FeedbackService feedbackService;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     @GetMapping("/login")
     public String login() {
         return "login_file";
@@ -222,21 +169,21 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
-    public String showUpdateForm(Model model, @RequestParam Long orderId) {
-        OrderDTO order = orderService.findById(orderId);
-        model.addAttribute("order",order);
-        model.addAttribute("direction", "container/feedback");
-        model.addAttribute("feedbacks", feedbackService.findAll());
-        return "index";
-    }
+//    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
+//    public String showUpdateForm(Model model, @RequestParam Long orderId) {
+//        OrderDTO order = orderService.findById(orderId);
+//        model.addAttribute("order",order);
+//        model.addAttribute("direction", "container/feedback");
+//        model.addAttribute("feedbacks", feedbackService.findAll());
+//        return "index";
+//    }
 
-    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
-    public String showUpdateForm(Model model, @RequestParam Long orderId) {
-        OrderDTO order = orderService.findById(orderId);
-        model.addAttribute("order",order);
-        model.addAttribute("direction", "container/feedback");
-        model.addAttribute("feedbacks", feedbackService.findAll());
-        return "index";
-    }
+//    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
+//    public String showUpdateForm(Model model, @RequestParam Long orderId) {
+//        OrderDTO order = orderService.findById(orderId);
+//        model.addAttribute("order",order);
+//        model.addAttribute("direction", "container/feedback");
+//        model.addAttribute("feedbacks", feedbackService.findAll());
+//        return "index";
+//    }
 }
