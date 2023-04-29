@@ -9,7 +9,7 @@
                         <h2 class="tm-block-title d-inline-block">[[${pageTitle}]]</h2>
                     </div>
                 </div>
-                <form th:action="@{/save-product}"  method="post" th:object="${editProductForm}" class="tm-edit-product-form">
+                <form th:action="@{/save-edit-product}"  method="post" th:object="${editProductForm}" class="tm-edit-product-form">
                     <div class="row tm-edit-product-row">
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <input type="hidden" th:field="*{id}" />
