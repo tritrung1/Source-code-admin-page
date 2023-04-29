@@ -195,21 +195,4 @@ public class MainController {
         return "index";
     }
 
-//    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
-//    public String showUpdateForm(Model model, @RequestParam Long orderId) {
-//        OrderDTO order = orderService.findById(orderId);
-//        model.addAttribute("order",order);
-//        model.addAttribute("direction", "container/feedback");
-//        model.addAttribute("feedbacks", feedbackService.findAll());
-//        return "index";
-//    }
-
-//    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
-//    public String showUpdateForm(Model model, @RequestParam Long orderId) {
-//        OrderDTO order = orderService.findById(orderId);
-//        model.addAttribute("order",order);
-//        model.addAttribute("direction", "container/feedback");
-//        model.addAttribute("feedbacks", feedbackService.findAll());
-//        return "index";
-//    }
 }

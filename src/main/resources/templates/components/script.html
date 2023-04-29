@@ -102,4 +102,29 @@
 <!--    alert("Are you sure you want to delete this record?");-->
 <!--}-->
 <!--</script>-->
+<script>
+    // this is the id of the form
+    $("#category_form").submit(function (e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = {
+            categoryName: $("#category_name").val(),
+        };
+        // var actionUrl = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: "/api/v1/category/create",
+            data: form, // serializes the form's elements.
+            dataType: "json",
+            success: function () {
+                $("#categoryzone").get({
+                    url: "/api/v1/categories"
+                })
+            }
+        });
+        $(document).ajaxStop(function(){
+            window.location.reload();
+        });
+    });
+</script>
 </body>
