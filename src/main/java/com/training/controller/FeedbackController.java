@@ -2,7 +2,6 @@ package com.training.controller;
 
 import com.training.consts.ApiPath;
 import com.training.dto.FeedbackDTO;
-import com.training.repository.FeedbackRepository;
 import com.training.service.FeedbackService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

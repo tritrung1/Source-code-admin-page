@@ -5,44 +5,44 @@
             <h2 class="tm-block-title">Orders List</h2>
             <div class="tm-product-table-container">
                 <table class="table table-hover tm-table-small tm-product-table" id="order-list-table">
-            <thead>
-            <tr>
-                <th scope="col">CUSTOMER NAME</th>
-                <th scope="col">CUSTOMER PHONE</th>
-                <th scope="col">PRODUCT NAME</th>
-                <th scope="col">QUANTITY</th>
-                <th scope="col">PRICE</th>
-                <th scope="col">PAYMENT METHOD</th>
-                <th scope="col">DELIVERY DATE</th>
-                <th scope="col">SHIPPING UNIT</th>
-                <th scope="col">SHIPPER PHONE</th>
-                <th scope="col">ODER STATUS</th>
-                <th scope="col">FEEDBACK</th>
-            </tr>
-            </thead>
-            <tbody>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th scope="col">CUSTOMER NAME</th>
+                        <th scope="col">CUSTOMER PHONE</th>
+                        <th scope="col">PRODUCT NAME</th>
+                        <th scope="col">QUANTITY</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">PAYMENT METHOD</th>
+                        <th scope="col">DELIVERY DATE</th>
+                        <th scope="col">SHIPPING UNIT</th>
+                        <th scope="col">SHIPPER PHONE</th>
+                        <th scope="col">ODER STATUS</th>
+                        <th scope="col">FEEDBACK</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-            <tr th:each="order: ${orders}">
-                <td><b th:text="${order.id}" /></td>
-                <td><b th:text="${order.customer.lastName}" /></td>
-                <td><b th:text="${order.customer.customerPhone}" /></td>
-                <td><b th:text="${order.price}" /></td>
-                <td><b th:text="${order.paymentMethod}" /></td>
-                <td><b th:text="${order.deliveryDetail.deliveryDate}" /></td>
-                <td><b th:text="${order.deliveryDetail.shippingUnit}" /></td>
-                <td><b th:text="${order.deliveryDetail.shipperPhone}" /></td>
-                <td>
-                    <div class="tm-status-circle moving" >
-                    </div><b th:text="${order.orderStatus.name}" />
-                </td>
-                <td><a th:href="@{/detailFeedback(orderId=${order.feedback.id})}">Detail</a></td>
+                    <tr th:each="order: ${orders}">
+                        <td><b th:text="${order.id}" /></td>
+                        <td><b th:text="${order.customer.lastName}" /></td>
+                        <td><b th:text="${order.customer.customerPhone}" /></td>
+                        <td></td>
+                        <td></td>
+                        <td><b th:text="${order.price}" /></td>
+                        <td><b th:text="${order.paymentMethod}" /></td>
+                        <td><b th:text="${order.deliveryDetail.deliveryDate}" /></td>
+                        <td><b th:text="${order.deliveryDetail.shippingUnit}" /></td>
+                        <td><b th:text="${order.deliveryDetail.shipperPhone}" /></td>
+                        <td>
+                            <div class="tm-status-circle moving" >
+                            </div><b th:text="${order.orderStatus.name}" />
+                        </td>
+                        <td><a th:href="@{/detailFeedback(orderId=${order.feedback.id})}">Detail</a></td>
 
-                <td><a th:href="@{/detailFeedback(orderId=${order.feedback.id})}">Detail</a></td>
-
-                <td><a th:href="@{/detailFeedback(orderId=${order.feedback.id})}">Detail</a></td>
-            </tr>
-            </tbody>
-        </table>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
