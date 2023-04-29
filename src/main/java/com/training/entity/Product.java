@@ -1,17 +1,15 @@
 package com.training.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -62,14 +60,14 @@ public class Product implements Serializable {
     private String modifiedBy;
 
     //many to one with table category
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @JsonBackReference
     private Category category;
 
-    //one to one with table post
-    @OneToOne(mappedBy = "product")
-    private Post post;
+//
+//    //one to one with table post
+//    @OneToOne(mappedBy = "product")
+//    private Post post;
 
 }

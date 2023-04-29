@@ -162,6 +162,24 @@ public class MainController {
         return "index";
     }
 
+//    @PostMapping("/save-edit-product")
+//    public String saveProduct(Model model,@ModelAttribute("productDTO") ProductDTO productDTO) {
+//        model.addAttribute("pageTitle", "Edit Product " + productDTO.getProductName());
+//        ProductDTO abc = productService.findById()
+//
+////        if(productDTO.getPrice() != )
+////        save price in same time with product
+//        PriceDTO priceDTO = new PriceDTO();
+//        priceDTO.setProductCode(productDTO.getProductCode());
+//        priceDTO.setPrice(productDTO.getPrice());
+//        priceService.save(priceDTO);
+////        save import in same time with product
+//        ImportDTO importDTO = new ImportDTO();
+//        importDTO.setProductCode(productDTO.getProductCode());
+//        importDTO.setImportQuantity(productDTO.getImportQuantity());
+//        importService.save(importDTO);
+//        return "redirect:/products";
+
     @GetMapping("/delete-product/{id}")
     public String deleteProduct(@PathVariable(value ="id") Long id) {
         ProductDTO productDTO = productService.findById(id);

@@ -1,16 +1,17 @@
 package com.training.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.Set;
-import java.util.UUID;
+import java.util.Date;
+import java.util.List;
 
-@Data
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -20,10 +21,6 @@ public class Category implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "category_id")
-    @GeneratedValue
-    private UUID categoryId;
 
     @Column(name = "category_name")
     private String categoryName;
@@ -40,6 +37,7 @@ public class Category implements Serializable {
     @Column(name = "modified_by")
     private String modifiedBy;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Product> products;
+    @OneToMany(targetEntity = Product.class, mappedBy = "category")
+    @JsonManagedReference
+    private List<Product> products;
 }
