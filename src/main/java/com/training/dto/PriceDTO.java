@@ -11,6 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class PriceDTO implements Serializable {
     private Long id;
+    private String productCode;
     private Double price;
     private Integer discount;
     private Date createdDate;

@@ -5,9 +5,11 @@ import com.training.dto.CategoryDTO;
 import com.training.dto.ReportDTO;
 import com.training.repository.ReportRepository;
 import com.training.service.ReportService;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @RestController
@@ -43,4 +45,10 @@ public class ReportController {
         boolean isDelete = service.delete(newReport);
         return  isDelete ? "Delete success!!!" : "Delete fail!!!";
     }
+
+    @GetMapping("/reports/{type}")
+    public String generateReport(@PathVariable String type) throws JRException, FileNotFoundException {
+        return service.exportReport(type);
+    }
+
 }

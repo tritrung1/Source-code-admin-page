@@ -81,7 +81,7 @@ public class ReportServiceImpl implements ReportService {
     }
     @Override
     public String exportReport(String reportType) throws FileNotFoundException, JRException {
-        String path = "E:\\ASSINGMENT\\Mock Project\\report";
+        String path = "E:\\ASSINGMENT\\Mock Project\\sourceTrung\\Source-code-admin-page\\report";
         List<Product> products = productRepository.findAll();
         //load file and compile it
         File file = ResourceUtils.getFile("classpath:product.jrxml");
@@ -91,10 +91,10 @@ public class ReportServiceImpl implements ReportService {
         parameters.put("createdBy", "Thanh");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         if (reportType.equalsIgnoreCase("html")) {
-            JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\employees.html");
+            JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\ProductReport.html");
         }
         if (reportType.equalsIgnoreCase("pdf")) {
-            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\employees.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\ProductReport.pdf");
         }
 
         return "report generated in path : " + path;

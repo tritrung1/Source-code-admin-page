@@ -12,8 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class ImportDTO implements Serializable {
     private Long id;
+    private String productCode;
     private Integer importQuantity;
-    private Date importDate;
     private Date createdDate;
     private Date modifiedDate;
     private String createdBy;

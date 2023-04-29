@@ -1,11 +1,6 @@
 package com.training.controller;
-import com.training.dto.CategoryDTO;
-import com.training.dto.NewsDTO;
-import com.training.dto.NotificationDTO;
-import com.training.dto.ProductDTO;
+import com.training.dto.*;
 import com.training.service.*;
-import com.training.dto.OrderDTO;
-import com.training.dto.AccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +24,10 @@ public class MainController {
     OrderService orderService;
     @Autowired
     FeedbackService feedbackService;
+    @Autowired
+    PriceService priceService;
+    @Autowired
+    ImportService importService;
 
     @GetMapping("/login")
     public String login() {
@@ -127,26 +126,53 @@ public class MainController {
     public String addProduct(Model model) {
         model.addAttribute("direction","container/add-product");
         ProductDTO productDTO = new ProductDTO();
-        model.addAttribute("productDTO", productDTO);
+        model.addAttribute("productForm", productDTO);
+
+        List<CategoryDTO> categories = categoryService.findAll();
+        model.addAttribute("categories",categories);
         return "index";
     }
     @PostMapping("/save-product")
-    public String saveProduct(@ModelAttribute("productDTO") ProductDTO productDTO) {
+    public String saveProduct(Model model,@ModelAttribute("productDTO") ProductDTO productDTO) {
+        model.addAttribute("pageTitle", "Edit Product " + productDTO.getProductName());
         productService.save(productDTO);
+
+//        save price in same time with product
+        PriceDTO priceDTO = new PriceDTO();
+        priceDTO.setProductCode(productDTO.getProductCode());
+        priceDTO.setPrice(productDTO.getPrice());
+        priceService.save(priceDTO);
+//        save import in same time with product
+        ImportDTO importDTO = new ImportDTO();
+        importDTO.setProductCode(productDTO.getProductCode());
+        importDTO.setImportQuantity(productDTO.getImportQuantity());
+        importService.save(importDTO);
         return "redirect:/products";
     }
 
-    @GetMapping("/edit-product")
-    public String editProduct(Model model) {
+    @GetMapping("/edit-product/{id}")
+    public String editProduct(Model model, @PathVariable(value ="id") Long id) {
         model.addAttribute("direction", "container/edit-product");
+        ProductDTO productDTO = productService.findById(id);
+        model.addAttribute("editProductForm", productDTO);
+        model.addAttribute("pageTitle", "Edit Product " + productDTO.getProductName() );
+
+        List<CategoryDTO> categories = categoryService.findAll();
+        model.addAttribute("categories",categories);
         return "index";
     }
 
     @GetMapping("/delete-product/{id}")
     public String deleteProduct(@PathVariable(value ="id") Long id) {
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setId(id);
+        ProductDTO productDTO = productService.findById(id);
         productService.delete(productDTO);
+        return "redirect:/products";
+    }
+
+    @GetMapping("/delete-category/{id}")
+    public String deleteCategory(@PathVariable(value ="id") Long id) {
+        CategoryDTO categoryDTO = categoryService.findById(id);
+        categoryService.delete(categoryDTO);
         return "redirect:/products";
     }
 

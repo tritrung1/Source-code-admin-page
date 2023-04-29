@@ -6,69 +6,65 @@
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="tm-block-title d-inline-block">Edit Product</h2>
+                        <h2 class="tm-block-title d-inline-block">[[${pageTitle}]]</h2>
                     </div>
                 </div>
-                <form action="" method="post" class="tm-edit-product-form">
+                <form th:action="@{/save-product}"  method="post" th:object="${editProductForm}" class="tm-edit-product-form">
                     <div class="row tm-edit-product-row">
-
                         <div class="col-xl-6 col-lg-6 col-md-12">
+                            <input type="hidden" th:field="*{id}" />
                             <div class="form-group mb-3">
                                 <label for="name">Product Name
                                 </label>
-                                <input id="name" name="name" type="text" value="Lorem Ipsum Product"
+                                <input th:field="*{productName}" id="name" name="name" type="text" value="Lorem Ipsum Product"
                                        class="form-control validate"/>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="code">Product Code
                                 </label>
-                                <input id="code" name="name" type="text" value="Code" class="form-control validate"
+                                <input th:field="*{productCode}" id="code" name="name" type="text" value="Code" class="form-control validate"
                                        required/>
                             </div>
                             <div class="form-group mb-3">
                                 <label id="description">Description</label>
-                                <textarea class="form-control validate tm-small" rows="5"
+                                <textarea th:field="*{description}" class="form-control validate tm-small" rows="5"
                                           required>Lorem ipsum dolor amet gentrify glossier locavore messenger bag chillwave hashtag irony migas wolf kale chips small batch kogi direct trade shaman.</textarea>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="category">Category</label>
-                                <select class="custom-select tm-select-accounts" id="category">
-                                    <option>Select category</option>
-                                    <option value="1" selected>New Arrival</option>
-                                    <option value="2">Most Popular</option>
-                                    <option value="3">Trending</option>
+                                <select th:field="*{category}" class="custom-select tm-select-accounts" id="category">
+                                    <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.categoryName}">Select category</option>
                                 </select>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="quantity">Quantity
                                 </label>
-                                <input id="quantity" name="quantity" type="text" value="20"
+                                <input th:field="*{importQuantity}" id="quantity" name="quantity" type="text" value="20"
                                        class="form-control validate" required/>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                            <div class="tm-product-img-edit mx-auto">
-                                <img th:src="@{/static/dist/img/product-image.jpg}" alt="Product image"
-                                     class="img-fluid d-block mx-auto">
+                            <div class="tm-product-img-dummy mx-auto">
                                 <i class="fas fa-cloud-upload-alt tm-upload-icon"
                                    onclick="document.getElementById('fileInput').click();"></i>
                             </div>
                             <div class="custom-file mt-3 mb-3">
                                 <input id="fileInput" type="file" style="display:none;"/>
-                                <input type="button" class="btn btn-primary btn-block mx-auto" value="CHANGE IMAGE NOW"
+                                <input type="button" class="btn btn-primary btn-block mx-auto"
+                                       value="UPLOAD PRODUCT IMAGE"
                                        onclick="document.getElementById('fileInput').click();"/>
                             </div>
                             <div class="row">
                                 <div class="form-group mb-3 col-xs-12 col-sm-6">
                                     <label for="price">Price
                                     </label>
-                                    <input id="price" name="price" type="text" value="200" class="form-control validate"
+                                    <input th:field="*{price}" id="price" name="price" type="text" value="200" class="form-control validate"
                                            required/>
                                 </div>
                                 <div class="form-group mb-3 col-xs-12 col-sm-6">
                                     <label for="brand">Brand
                                     </label>
-                                    <input id="brand" name="brand" type="text" value="Adidas"
+                                    <input th:field="*{brand}" id="brand" name="brand" type="text" value="Adidas"
                                            class="form-control validate" required/>
                                 </div>
                             </div>
@@ -76,13 +72,13 @@
                                 <div class="form-group mb-3 col-xs-12 col-sm-6">
                                     <label for="color">Color
                                     </label>
-                                    <input id="color" name="color" type="text" value="Blue"
+                                    <input th:field="*{color}" id="color" name="color" type="text" value="Blue"
                                            class="form-control validate" required/>
                                 </div>
                                 <div class="form-group mb-3 col-xs-12 col-sm-6">
                                     <label for="size">Size
                                     </label>
-                                    <input id="size" name="size" type="text" value="L" class="form-control validate"
+                                    <input th:field="*{size}" id="size" name="size" type="text" value="L" class="form-control validate"
                                            required/>
                                 </div>
                             </div>
@@ -91,7 +87,6 @@
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
                         </div>
-
                     </div>
                 </form>
             </div>

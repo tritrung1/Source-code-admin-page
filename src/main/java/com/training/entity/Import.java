@@ -19,11 +19,11 @@ public class Import implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "product_code")
+    private String productCode;
+
     @Column(name = "import_quantity")
     private Integer importQuantity;
-
-    @Column(name = "import_date")
-    private Date importDate;
 
     @Column(name = "created_date")
     private Date createdDate;

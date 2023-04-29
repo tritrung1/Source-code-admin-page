@@ -19,6 +19,9 @@ public class Price implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "product_code")
+    private String productCode;
+
     @Column(name = "price")
     private Double price;
 

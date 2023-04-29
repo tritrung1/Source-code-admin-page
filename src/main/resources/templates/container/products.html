@@ -11,20 +11,23 @@
                             <th scope="col">NAME</th>
                             <th scope="col">CODE</th>
                             <th scope="col">PRICE</th>
-                            <th scope="col">UNIT SOLD</th>
-                            <th scope="col">IN STOCK</th>
+                            <th scope="col">BRAND</th>
+                            <th scope="col">QUANTITY</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="product:${products}">
-                            <th scope="row" th:text="${product.id}"><input type="checkbox" /></th>
+                            <th scope="row" th:text="${product.id}"><input type="checkbox"/></th>
                             <td class="tm-product-name" th:text="${product.productName}"/>
                             <td th:text="${product.productCode}"/>
                             <td th:text="${product.price}"/>
                             <td th:text="${product.brand}"/>
-                            <td th:text="${product.color}"/>
+                            <td th:text="${product.importQuantity}"/>
                             <td>
+                                <a th:href="@{'/edit-product/' + ${product.id}}" class="tm-product-update-link">
+                                    <i class="far fa-edit tm-product-update-icon"></i>
+                                </a>
                                 <a th:href="@{'/delete-product/' + ${product.id}}" class="tm-product-delete-link">
                                     <i class="far fa-trash-alt tm-product-delete-icon"></i>
                                 </a>
@@ -34,13 +37,15 @@
                     </table>
                 </div>
                 <!-- table container -->
-                <a id="addProduct" th:href="@{/add-product}" class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
-                <button class="btn btn-primary btn-block text-uppercase">
-                    Delete selected products
-                </button>
+
+                <a id="addProduct" th:href="@{/add-product}" class="btn btn-primary btn-block text-uppercase mb-3">Add
+                    new product</a>
+<!--                <button class="btn btn-primary btn-block text-uppercase">-->
+<!--                    Delete selected products-->
+<!--                </button>-->
             </div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
+        <div id="categoryzone" class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
             <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
                 <h2 class="tm-block-title">Product Categories</h2>
                 <div class="tm-product-table-container">
@@ -58,11 +63,16 @@
                     </table>
                 </div>
                 <!-- table container -->
-                <button class="btn btn-primary btn-block text-uppercase mb-3">
-                    Add new category
-                </button>
+                <form id="category_form" method="post"  class="tm-product-table-container">
+                    <input id="category_name" name="category_name" type="text" class="form-control validate" required/>
+                    <button class="btn btn-primary btn-block text-uppercase mb-3">
+                        Add new category
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+
 
