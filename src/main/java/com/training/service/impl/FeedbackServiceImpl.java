@@ -79,4 +79,12 @@ public class FeedbackServiceImpl implements FeedbackService {
             return false;
         }
     }
+
+    @Override
+    public List<FeedbackDTO> findByStatus() {
+        List<Feedback> feedbacks = repository.findByStatus();
+        return feedbacks == null || feedbacks.size() == 0 ? new ArrayList<>()
+                : feedbacks.stream().map(item -> mapper.convertEntityToDTO(item))
+                .collect(Collectors.toList());
+    }
 }

@@ -18,7 +18,6 @@
                         <th scope="col">SHIPPING UNIT</th>
                         <th scope="col">SHIPPER PHONE</th>
                         <th scope="col">ODER STATUS</th>
-                        <th scope="col">FEEDBACK</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,7 +26,7 @@
                         <td><b th:text="${order.id}" /></td>
                         <td><b th:text="${order.customer.lastName}" /></td>
                         <td><b th:text="${order.customer.customerPhone}" /></td>
-                        <td></td>
+                        <td><b th:text="${order.product.productName}" /></td>
                         <td></td>
                         <td><b th:text="${order.price}" /></td>
                         <td><b th:text="${order.paymentMethod}" /></td>
@@ -38,7 +37,6 @@
                             <div class="tm-status-circle moving" >
                             </div><b th:text="${order.orderStatus.name}" />
                         </td>
-                        <td><a th:href="@{/detailFeedback(orderId=${order.feedback.id})}">Detail</a></td>
 
                     </tr>
                     </tbody>

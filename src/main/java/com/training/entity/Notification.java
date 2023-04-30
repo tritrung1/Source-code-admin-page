@@ -28,9 +28,6 @@ public class Notification extends DateAudit {
     @Column(name = "merchant_id")
     private Long merchantId;
 
-    @Column(name = "post_id")
-    private Long postId;
-
     @Column(name = "notification_type")
     private String notificationType;
 

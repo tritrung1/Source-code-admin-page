@@ -23,18 +23,14 @@ public class OrderDTO extends DateAudit {
 
     private Double price;
 
-    private String productId;
+    private Product product;
 
     private DeliveryDetail deliveryDetail;
 
     private OrderStatus orderStatus;
 
-    private Feedback feedback;
-
     private Customer customer;
 
-    private List<Report> reports;
-
-    private List<Notification> notifications;
+    private List<Feedback> feedback;
 
 }

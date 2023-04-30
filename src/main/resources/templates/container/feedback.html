@@ -3,19 +3,28 @@
     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
         <h2 class="tm-block-title">User Feedback</h2>
         <div class="media tm-notification-item" th:each="feedback: ${feedbacks}">
-            <div class="tm-gray-circle"><img th:src="@{'/static/dist/img/' + ${feedback.images}}"
+            <div class="tm-gray-circle"><img th:src="@{/static/dist/img/notification-01.jpg}"
                                              alt="Avatar Image" class="rounded-circle">
             </div>
             <div class="media-body">
 
-                <p class="mb-2"><b th:text="${feedback.customer.lastName}"/> commented on the product. <a href="#"
-                                                                                                          class="tm-notification-link">Reply</a>.</p>
-                <p class="mb-2"> Order code: <b th:text="${order.orderCode}"/> </p>
+                <p class="mb-2"><b th:text="${feedback.customer.lastName}"/> commented on the product. </p>
+                <p class="mb-2"> Order code: <b th:text="${feedback.order.orderCode}"/> </p>
                 <p class="mb-2"> User rate: <b th:text="${feedback.rating}"/> </p>
                 <p class="mb-2"> User opinion: <b th:text="${feedback.opinion}"/> </p>
 
                 <p> Date post: <span class="tm-small tm-text-color-secondary" th:text="${feedback.createdDate}"></span></p>
-                <!--                <p class="mb-2"><b th:insert="container/replyfeedback :: reply"/></p>-->
+
+                <div class="form-group">
+                    <button class="tm-notification-link" id="btn-add">Reply</button>
+
+                    <form th:action="@{/answer-feedback(id=${feedback.id})}" th:object="${content}" method="post" >
+                        <div id="input-2"></div>
+
+                        <button type="submit" class="btn btn-primary btn-block text-uppercase" >Send</button>
+                    </form>
+
+                </div>
 
             </div>
         </div>

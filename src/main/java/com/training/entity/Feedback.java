@@ -31,11 +31,18 @@ public class Feedback extends DateAudit {
     @Column(name = "images")
     private String images;
 
+    @Column(name = "active", columnDefinition = "tinyint(1) default 1")
+    private Boolean active;
+
+    @Column(name = "reply")
+    private String reply;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "feedback")
-    private List<Order> orders;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
 }

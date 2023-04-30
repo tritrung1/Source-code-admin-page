@@ -5,8 +5,6 @@ import com.training.entity.Order;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,8 +22,12 @@ public class FeedbackDTO extends DateAudit {
 
     private String images;
 
+    private Boolean active;
+
+    private String reply;
+
     private Customer customer;
 
-    private List<Order> orders;
+    private Order order;
 
 }

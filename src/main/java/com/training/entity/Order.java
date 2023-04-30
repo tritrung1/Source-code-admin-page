@@ -31,8 +31,9 @@ public class Order extends DateAudit {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "product_id")
-    private String productId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_detail_id")
@@ -43,16 +44,10 @@ public class Order extends DateAudit {
     private OrderStatus orderStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "feedback_id")
-    private Feedback feedback;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @OneToMany(mappedBy = "order")
-    private List<Report> reports;
+    private List<Feedback> feedback;
 
-    @OneToMany(mappedBy = "order")
-    private List<Notification> notifications;
 }

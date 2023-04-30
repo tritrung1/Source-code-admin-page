@@ -56,6 +56,18 @@
     $('#accountList').addClass("active");
 </script>
 
+<script th:if="${direction} == 'container/feedback'">
+    const btn = document.getElementById("btn-add");
+    var target = document.getElementById("input-2");
+
+    btn.addEventListener('click', function () {
+      target.innerHTML += `
+      <input type="text" th:field="*{reply}" name="reply" id="reply" class="form-control" placeholder="Enter your answer" required />
+                        <input type="hidden" th:field="*{id}" />
+      `;
+    });
+</script>
+
 <!-- script chart -->
 <script th:if="${direction} == 'container/init'">
     Chart.defaults.global.defaultFontColor = 'white';

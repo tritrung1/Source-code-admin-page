@@ -1,5 +1,4 @@
 package com.training.controller;
-
 import com.training.dto.*;
 import com.training.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +36,13 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/index"})
     public String getInit(Model model) {
-        model.addAttribute("direction", "container/init");
+        model.addAttribute("direction","container/init");
         return "index";
     }
 
     @RequestMapping("/products")
     public String products(Model model) {
-        model.addAttribute("direction", "container/products");
+        model.addAttribute("direction","container/products");
 
         List<ProductDTO> products = productService.findAll();
         model.addAttribute("products", products);
@@ -53,24 +52,23 @@ public class MainController {
 
         return "index";
     }
-
     // start account
     @GetMapping("/accounts")
     public String accounts(Model model) {
         List<AccountDTO> accounts = accountService.findAll();
-        model.addAttribute("direction", "container/accounts");
-        model.addAttribute("accountList", accounts);
+        model.addAttribute("direction","container/accounts");
+        model.addAttribute("accountList", accounts );
         return "index";
     }
 
     @PostMapping("/update-account")
-    public String updateAccount(@ModelAttribute("accountDTO") AccountDTO accountDTO) {
+    public String updateAccount(@ModelAttribute("accountDTO")AccountDTO accountDTO) {
         accountService.save(accountDTO);
         return "redirect:/accounts";
     }
 
-    @GetMapping(value = "/update-account-form/{id}")
-    public String updateAccountForm(Model model, @PathVariable(value = "id") Long id) {
+    @GetMapping (value = "/update-account-form/{id}")
+    public String updateAccountForm(Model model, @PathVariable(value ="id") Long id)  {
         model.addAttribute("direction", "container/update-account");
 
         AccountDTO accountDTO = accountService.findById(id);
@@ -78,9 +76,8 @@ public class MainController {
         model.addAttribute("accountDTO", accountDTO);
         return "index";
     }
-
     @PostMapping(value = "/create-account")
-    public String createAccount(@ModelAttribute("accountDTO") AccountDTO accountDTO) {
+    public String createAccount(@ModelAttribute("accountDTO")AccountDTO accountDTO) {
         accountService.save(accountDTO);
         return "redirect:/accounts";
     }
@@ -94,7 +91,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/delete-account/{id}")
-    public String deleteAccount(@PathVariable(value = "id") Long id) {
+    public String deleteAccount(@PathVariable(value ="id") Long id) {
         AccountDTO createAccount = accountService.findById(id);
         accountService.delete(createAccount);
         return "redirect:/accounts";
@@ -103,20 +100,20 @@ public class MainController {
     // end account
     @RequestMapping("/post-manage")
     public String postManage(Model model) {
-        model.addAttribute("direction", "container/post-manage");
+        model.addAttribute("direction","container/post-manage");
         return "index";
     }
 
     @RequestMapping("/order-list-manage")
     public String orderList(Model model) {
-        model.addAttribute("direction", "container/order-list-manage");
+        model.addAttribute("direction","container/order-list-manage");
         model.addAttribute("orders", orderService.findAll());
         return "index";
     }
 
     @RequestMapping("/notification-manage")
     public String notification(Model model) {
-        model.addAttribute("direction", "container/notification-manage");
+        model.addAttribute("direction","container/notification-manage");
 
         List<NotificationDTO> notifications = notificationService.findAll();
         model.addAttribute("notifications", notifications);
@@ -127,17 +124,16 @@ public class MainController {
 
     @GetMapping("/add-product")
     public String addProduct(Model model) {
-        model.addAttribute("direction", "container/add-product");
+        model.addAttribute("direction","container/add-product");
         ProductDTO productDTO = new ProductDTO();
         model.addAttribute("productForm", productDTO);
 
         List<CategoryDTO> categories = categoryService.findAll();
-        model.addAttribute("categories", categories);
+        model.addAttribute("categories",categories);
         return "index";
     }
-
     @PostMapping("/save-product")
-    public String saveProduct(Model model, @ModelAttribute("productDTO") ProductDTO productDTO) {
+    public String saveProduct(Model model,@ModelAttribute("productDTO") ProductDTO productDTO) {
         model.addAttribute("pageTitle", "Edit Product " + productDTO.getProductName());
         productService.save(productDTO);
 
@@ -155,14 +151,14 @@ public class MainController {
     }
 
     @GetMapping("/edit-product/{id}")
-    public String editProduct(Model model, @PathVariable(value = "id") Long id) {
+    public String editProduct(Model model, @PathVariable(value ="id") Long id) {
         model.addAttribute("direction", "container/edit-product");
         ProductDTO productDTO = productService.findById(id);
         model.addAttribute("editProductForm", productDTO);
-        model.addAttribute("pageTitle", "Edit Product " + productDTO.getProductName());
+        model.addAttribute("pageTitle", "Edit Product " + productDTO.getProductName() );
 
         List<CategoryDTO> categories = categoryService.findAll();
-        model.addAttribute("categories", categories);
+        model.addAttribute("categories",categories);
         return "index";
     }
 
@@ -187,14 +183,14 @@ public class MainController {
     }
 
     @GetMapping("/delete-product/{id}")
-    public String deleteProduct(@PathVariable(value = "id") Long id) {
+    public String deleteProduct(@PathVariable(value ="id") Long id) {
         ProductDTO productDTO = productService.findById(id);
         productService.delete(productDTO);
         return "redirect:/products";
     }
 
     @GetMapping("/delete-category/{id}")
-    public String deleteCategory(@PathVariable(value = "id") Long id) {
+    public String deleteCategory(@PathVariable(value ="id") Long id) {
         CategoryDTO categoryDTO = categoryService.findById(id);
         categoryService.delete(categoryDTO);
         return "redirect:/products";
@@ -210,13 +206,23 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/detailFeedback", method = RequestMethod.GET)
-    public String showUpdateForm(Model model, @RequestParam Long orderId) {
-        OrderDTO order = orderService.findById(orderId);
-        model.addAttribute("order", order);
+    @RequestMapping(value = "/feedback", method = RequestMethod.GET)
+    public String showListFeedback(Model model) {
+        List<FeedbackDTO> feedbackDTOs = feedbackService.findByStatus();
         model.addAttribute("direction", "container/feedback");
-        model.addAttribute("feedbacks", feedbackService.findAll());
+        model.addAttribute("feedbacks", feedbackDTOs);
         return "index";
+    }
+
+    @RequestMapping(value = "/answer-feedback", method = RequestMethod.POST)
+    public String saveAnswer(@RequestParam Long id, @RequestParam String reply) {
+        FeedbackDTO feedbackDTO = feedbackService.findById(id);
+
+        feedbackDTO.setActive(false);
+        feedbackDTO.setReply(reply);
+        feedbackService.save(feedbackDTO);
+
+        return "redirect:/feedback";
     }
 
 }
