@@ -4,6 +4,7 @@ import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -49,4 +50,9 @@ public class Order extends DateAudit {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @OneToMany(mappedBy = "order")
+    private List<Report> reports;
+
+    @OneToMany(mappedBy = "order")
+    private List<Notification> notifications;
 }

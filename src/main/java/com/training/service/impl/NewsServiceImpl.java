@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.NewsDTO;
 import com.training.entity.News;
 import com.training.mapper.NewsMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +40,12 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public NewsDTO save(NewsDTO newsDTO) {
         if (newsDTO == null) return new NewsDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        newsDTO.setNewsUuid(uuid.toString());
+
         News news = newsRepository.save(newsMapper.convertDTOToEntity(newsDTO));
         return news == null ? new NewsDTO() : newsMapper.convertEntityToDTO(news);
     }

@@ -1,46 +1,47 @@
 package com.training.dto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.training.entity.*;
+import com.training.entity.dateaudit.DateAudit;
+import lombok.*;
+
+import java.util.List;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountDTO implements Serializable {
+public class AccountDTO extends DateAudit {
     private Long id;
+
+    private String accountUuid;
+
     private String accountImg;
+
     private String bannerImg;
-    private UUID accountId;
+
     private Long merchantId;
+
     private String accountName;
+
     private String accountEmail;
-    private Long roleId;
+
     private String phone;
+
     private String address;
+
     private Boolean active;
-    private Date createdDate;
-    private Date modifiedDate;
-    private String createdBy;
-    private String modifiedBy;
-//=======
-//public class AccountDTO {
-//    private Long id;
-//    private UUID account_id;
-//    private Long merchant_id;
-//    private UUID role_id;
-//    private String name;
-//    private String email;
-//    private String phone;
-//    private String address;
-//    private String account_img;
-//    private String banner_img;
-//    private Boolean active;
-//    private String created_date;
-//    private String created_by;
-//    private String modified_date;
-//    private String modified_by;
-//>>>>>>> Stashed changes
+
+    private Role role;
+
+    private Order order;
+
+    private List<Notification> notifications;
+
+    private List<Product> products;
+
+    private List<Report> reports;
+
+    private List<News> news;
 }

@@ -1,11 +1,10 @@
 package com.training.dto;
 
-import com.training.entity.Customer;
-import com.training.entity.DeliveryDetail;
-import com.training.entity.Feedback;
-import com.training.entity.OrderStatus;
+import com.training.entity.*;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,5 +32,9 @@ public class OrderDTO extends DateAudit {
     private Feedback feedback;
 
     private Customer customer;
+
+    private List<Report> reports;
+
+    private List<Notification> notifications;
 
 }

@@ -1,25 +1,34 @@
 package com.training.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.training.entity.Account;
+import com.training.entity.Order;
+import com.training.entity.Post;
+import com.training.entity.dateaudit.DateAudit;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificationDTO implements Serializable {
+public class NotificationDTO extends DateAudit {
     private Long id;
+
+    private String notificationUuid;
+
     private String notificationCode;
-    private Long accountId;
+
     private Long merchantId;
-    private Long orderId;
+
     private Long postId;
+
     private String notificationType;
-    private Date createdDate;
-    private Date modifiedDate;
-    private String createdBy;
-    private String modifiedBy;
+
+    private Account account;
+
+    private Order order;
+
+    private Post post;
 }

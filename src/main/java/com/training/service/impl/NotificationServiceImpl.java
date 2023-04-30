@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.NotificationDTO;
 import com.training.entity.Notification;
 import com.training.mapper.NotificationMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +40,12 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public NotificationDTO save(NotificationDTO notificationDTO) {
         if (notificationDTO == null) return new NotificationDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        notificationDTO.setNotificationUuid(uuid.toString());
+
         Notification notification = notificationRepository.save(notificationMapper.convertDTOToEntity(notificationDTO));
         return notification == null ? new NotificationDTO() : notificationMapper.convertEntityToDTO(notification);
     }

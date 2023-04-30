@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.ImportDTO;
 import com.training.entity.Import;
 import com.training.mapper.ImportMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 @Service
 public class ImportServiceImpl implements ImportService {
@@ -38,6 +40,12 @@ public class ImportServiceImpl implements ImportService {
     @Override
     public ImportDTO save(ImportDTO importDTO) {
         if (importDTO == null) return new ImportDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        importDTO.setImportUuid(uuid.toString());
+
         Import imports = importRepository.save(importMapper.convertDTOToEntity(importDTO));
         return imports == null ? new ImportDTO() : importMapper.convertEntityToDTO(imports);
     }

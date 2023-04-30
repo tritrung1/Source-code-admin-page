@@ -1,26 +1,34 @@
 package com.training.dto;
 
+import com.training.entity.Account;
+import com.training.entity.Notification;
 import com.training.entity.Product;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.training.entity.dateaudit.DateAudit;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostDTO implements Serializable {
+public class PostDTO extends DateAudit {
     private Long id;
-    private UUID postId;
+
+    private String postUuid;
+
     private Date expiredDate;
+
     private String reason;
+
     private Boolean active;
-    private Date createdDate;
-    private Date modifiedDate;
-    private String createdBy;
-    private String modifiedBy;
-    private Product product;
+
+    private Account account;
+
+    private List<Product> products;
+
+    private List<Notification> notifications;
 }

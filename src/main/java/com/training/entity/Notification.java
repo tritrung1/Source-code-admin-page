@@ -1,37 +1,32 @@
 package com.training.entity;
 
+import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "notification")
-public class Notification implements Serializable {
+public class Notification extends DateAudit {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "notification_id")
-    @GeneratedValue
-    private UUID notificationId;
+    @Column(name = "notification_uuid")
+    private String notificationUuid;
 
     @Column(name = "notification_code")
     private String notificationCode;
 
-    @Column(name = "account_id")
-    private Long accountId;
-
     @Column(name = "merchant_id")
     private Long merchantId;
-
-    @Column(name = "order_id")
-    private Long orderId;
 
     @Column(name = "post_id")
     private Long postId;
@@ -39,15 +34,15 @@ public class Notification implements Serializable {
     @Column(name = "notification_type")
     private String notificationType;
 
-    @Column(name = "created_date")
-    private Date createdDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
-    @Column(name = "modified_date")
-    private Date modifiedDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "modified_by")
-    private String modifiedBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private Post post;
 }

@@ -1,6 +1,7 @@
 package com.training.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,11 +14,14 @@ import java.sql.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "Price")
-public class Price implements Serializable {
+public class Price extends DateAudit {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "price_uuid")
+    private String priceUuid;
 
     @Column(name = "product_code")
     private String productCode;
@@ -28,16 +32,7 @@ public class Price implements Serializable {
     @Column(name = "discount")
     private Integer discount;
 
-    @Column(name = "created_date")
-    private Date createdDate;
-
-    @Column(name = "modified_date")
-    private Date modifiedDate;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "modified_by")
-    private String modifiedBy;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

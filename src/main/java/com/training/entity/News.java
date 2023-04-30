@@ -1,9 +1,8 @@
 package com.training.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.training.entity.dateaudit.DateAudit;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -12,20 +11,20 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "news")
-public class News implements Serializable {
+public class News extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "push_id")
-    @GeneratedValue
-    private UUID pushId;
+    @Column(name = "news_uuid")
+    private String newsUuid;
 
     @Column(name = "push_code")
     private String pushCode;
@@ -33,28 +32,14 @@ public class News implements Serializable {
     @Column(name = "push_date")
     private Date pushDate;
 
-    @Column(name = "account_id")
-    private Long accountId;
-
     @Column(name = "expired_date")
     private Date expiredDate;
 
-    @Column(name = "created_date")
-    private Date createdDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
-    @Column(name = "modified_date")
-    private Date modifiedDate;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "modified_by")
-    private String modifiedBy;
-
-    //many to one with table product
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
     private Product product;
 }

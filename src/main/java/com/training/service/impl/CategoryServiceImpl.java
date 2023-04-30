@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.CategoryDTO;
 import com.training.entity.Category;
 import com.training.mapper.CategoryMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +41,12 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDTO save(CategoryDTO categoryDTO) {
         if (categoryDTO == null) return new CategoryDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        categoryDTO.setCategoryUuid(uuid.toString());
+
         Category category = categoryRepository.save(categoryMapper.convertDTOToEntity(categoryDTO));
         return category == null ? new CategoryDTO() : categoryMapper.convertEntityToDTO(category);
     }

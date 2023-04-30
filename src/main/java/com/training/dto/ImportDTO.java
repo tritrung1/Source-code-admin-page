@@ -1,21 +1,24 @@
 package com.training.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.training.entity.Product;
+import com.training.entity.dateaudit.DateAudit;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ImportDTO implements Serializable {
+public class ImportDTO extends DateAudit {
     private Long id;
+
+    private String importUuid;
+
     private String productCode;
+
     private Integer importQuantity;
-    private Date createdDate;
-    private Date modifiedDate;
-    private String createdBy;
-    private String modifiedBy;
+
+    private Product product;
 }

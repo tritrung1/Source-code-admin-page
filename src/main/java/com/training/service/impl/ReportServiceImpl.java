@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.ReportDTO;
 import com.training.entity.Product;
 import com.training.entity.Report;
@@ -47,6 +48,12 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public ReportDTO save(ReportDTO reportDTO) {
         if (reportDTO == null) return new ReportDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        reportDTO.setReportUuid(uuid.toString());
+
         Report report = reportRepository.save(reportMapper.convertDTOToEntity(reportDTO));
         return report == null ? new ReportDTO() : reportMapper.convertEntityToDTO(report);
     }

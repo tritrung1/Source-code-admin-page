@@ -2,6 +2,7 @@ package com.training.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,26 +17,17 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "category")
-public class Category implements Serializable {
+public class Category extends DateAudit {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "category_uuid")
+    private String categoryUuid;
+
     @Column(name = "category_name")
     private String categoryName;
-
-    @Column(name = "created_date")
-    private Date createdDate;
-
-    @Column(name = "modified_date")
-    private Date modifiedDate;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "modified_by")
-    private String modifiedBy;
 
     @OneToMany(targetEntity = Product.class, mappedBy = "category")
     @JsonManagedReference

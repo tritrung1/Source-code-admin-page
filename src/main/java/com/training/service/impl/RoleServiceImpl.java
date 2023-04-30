@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.RoleDTO;
 import com.training.entity.Role;
 import com.training.mapper.RoleMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +41,12 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public RoleDTO save(RoleDTO roleDTO) {
         if (roleDTO == null) return new RoleDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        roleDTO.setRoleUuid(uuid.toString());
+
         Role role = roleRepository.save(roleMapper.convertDTOToEntity(roleDTO));
         return role == null ? new RoleDTO() : roleMapper.convertEntityToDTO(role);
     }

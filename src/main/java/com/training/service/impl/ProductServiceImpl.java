@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.ProductDTO;
 import com.training.entity.Product;
 import com.training.mapper.ProductMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +40,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO save(ProductDTO productDTO) {
         if (productDTO == null) return new ProductDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        productDTO.setProductUuid(uuid.toString());
+
         Product product = productRepository.save(productMapper.convertDTOToEntity(productDTO));
         return product == null ? new ProductDTO() : productMapper.convertEntityToDTO(product);
     }

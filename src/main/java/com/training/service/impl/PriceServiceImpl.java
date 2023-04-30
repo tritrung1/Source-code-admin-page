@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.PriceDTO;
 import com.training.entity.Price;
 import com.training.mapper.PriceMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +41,12 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public PriceDTO save(PriceDTO priceDTO) {
         if (priceDTO == null) return new PriceDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        priceDTO.setPriceUuid(uuid.toString());
+
         Price price = priceRepository.save(priceMapper.convertDTOToEntity(priceDTO));
         return price == null ? new PriceDTO() : priceMapper.convertEntityToDTO(price);
     }

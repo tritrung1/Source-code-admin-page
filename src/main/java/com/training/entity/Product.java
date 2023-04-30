@@ -2,11 +2,13 @@ package com.training.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,11 +16,14 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "product")
-public class Product implements Serializable {
+public class Product extends DateAudit {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "product_uuid")
+    private String productUuid;
 
     @Column(name = "product_image")
     private String productImage;
@@ -47,27 +52,31 @@ public class Product implements Serializable {
     @Column(name = "importQuantity")
     private Integer importQuantity;
 
-    @Column(name = "created_date")
-    private Date createdDate;
-
-    @Column(name = "modified_date")
-    private Date modifiedDate;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "modified_by")
-    private String modifiedBy;
-
-    //many to one with table category
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    @JsonBackReference
     private Category category;
 
-//
-//    //one to one with table post
-//    @OneToOne(mappedBy = "product")
-//    private Post post;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "feedback_id")
+    private Feedback feedback;
+
+    @OneToMany(mappedBy = "product")
+    private List<Price> prices;
+
+    @OneToMany(mappedBy = "product")
+    private List<Import> imports;
+
+    @OneToMany(mappedBy = "product")
+    private List<Order> orders;
+
+    @OneToMany(mappedBy = "product")
+    private List<News> news;
 }

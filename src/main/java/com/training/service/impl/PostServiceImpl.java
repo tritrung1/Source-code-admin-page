@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.PostDTO;
 import com.training.entity.Post;
 import com.training.mapper.PostMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +40,12 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDTO save(PostDTO postDTO) {
         if (postDTO == null) return new PostDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        postDTO.setPostUuid(uuid.toString());
+
         Post post = postRepository.save(postMapper.convertDTOToEntity(postDTO));
         return post == null ? new PostDTO() : postMapper.convertEntityToDTO(post);
     }

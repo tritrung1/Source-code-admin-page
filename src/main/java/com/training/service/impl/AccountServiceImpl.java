@@ -1,5 +1,6 @@
 package com.training.service.impl;
 
+import com.fasterxml.uuid.Generators;
 import com.training.dto.AccountDTO;
 import com.training.entity.Account;
 import com.training.entity.Category;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +42,12 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDTO save(AccountDTO accountDTO) {
         if (accountDTO == null) return new AccountDTO();
+        // get unique uuid
+        UUID uuid = Generators.timeBasedGenerator().generate();
+
+        // set field or data for generate UUID
+        accountDTO.setAccountUuid(uuid.toString());
+
         Account account = accountRepository.save(accountMapper.convertDTOToEntity(accountDTO));
         return account == null ? new AccountDTO() : accountMapper.convertEntityToDTO(account);
     }

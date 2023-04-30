@@ -1,29 +1,29 @@
 package com.training.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.training.entity.dateaudit.DateAudit;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "post")
-public class Post implements Serializable {
+public class Post extends DateAudit {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "post_id")
-    @GeneratedValue
-    private UUID postId;
+    @Column(name = "post_uuid")
+    private String postUuid;
 
     @Column(name = "expired_date")
     private Date expiredDate;
@@ -34,20 +34,13 @@ public class Post implements Serializable {
     @Column(name = "active")
     private Boolean active;
 
-    @Column(name = "created_date")
-    private Date createdDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
-    @Column(name = "modified_date")
-    private Date modifiedDate;
+    @OneToMany(mappedBy = "post")
+    private List<Product> products;
 
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "modified_by")
-    private String modifiedBy;
-
-    // one to one with table product
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    @OneToMany(mappedBy = "post")
+    private List<Notification> notifications;
 }
