@@ -74,7 +74,7 @@ public class MainController {
     public String updateAccount(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO,
                                 BindingResult result) {
         if (result.hasErrors()) {
-            return "index";
+            return "redirect:/update-account-form/{id}";
         }
         accountService.save(accountDTO);
         return "redirect:/accounts";
@@ -93,7 +93,7 @@ public class MainController {
     public String createAccount(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO,
                                 BindingResult result) {
         if (result.hasErrors()) {
-            return "index";
+            return "redirect:/create-account-form";
         }
         accountService.save(accountDTO);
         return "redirect:/accounts";
@@ -135,7 +135,7 @@ public class MainController {
     public String rejectPost(@Valid @PathVariable Long id, @RequestParam String rejectMsg,
                              BindingResult result) {
         if (result.hasErrors()) {
-            return "index";
+            return "redirect:/post-manage/approved/{id}";
         }
         PostDTO postDTO = postService.findById(id);
         postDTO.setReason(rejectMsg);
@@ -176,7 +176,7 @@ public class MainController {
     public String saveProduct(@Valid @ModelAttribute("productForm") ProductDTO productDTO,
                               BindingResult result) {
         if (result.hasErrors()) {
-            return "index";
+            return "redirect:/add-product";
         }
         productDTO = productService.save(productDTO);
 
@@ -216,7 +216,7 @@ public class MainController {
     public String saveProduct(@Valid Model model, @ModelAttribute("productDTO") ProductDTO productDTO,
                               @RequestParam Long id, BindingResult result) {
         if (result.hasErrors()) {
-            return "index";
+            return "redirect:/edit-product/{id}";
         }
         model.addAttribute("pageTitle", "Edit Product " + productDTO.getProductName());
         productService.save(productDTO);
@@ -274,7 +274,7 @@ public class MainController {
     public String saveAnswer(@Valid @RequestParam Long id, @RequestParam String reply,
                              BindingResult result) {
         if (result.hasErrors()) {
-            return "index";
+            return "redirect:/feedback";
         }
         FeedbackDTO feedbackDTO = feedbackService.findById(id);
 

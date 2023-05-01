@@ -21,16 +21,12 @@ public class Role extends DateAudit {
     @Column(name = "id")
     private Long id;
 
-    @NotEmpty
     @Column(name = "role_uuid")
     private String roleUuid;
 
-    @NotEmpty
-    @Size(min = 3)
     @Column(name = "role_name")
     private String roleName;
 
-    @NotEmpty
     @OneToMany(mappedBy = "role")
     private List<Account> accounts;
 }

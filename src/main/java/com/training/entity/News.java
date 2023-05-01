@@ -24,28 +24,22 @@ public class News extends DateAudit {
     @Column(name = "id")
     private Long id;
 
-    @NotEmpty
     @Column(name = "news_uuid")
     private String newsUuid;
 
-    @NotEmpty
     @Column(name = "push_code")
     private String pushCode;
 
-    @NotEmpty
     @Column(name = "push_date")
     private Date pushDate;
 
-    @NotEmpty
     @Column(name = "expired_date")
     private Date expiredDate;
 
-    @NotEmpty
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @NotEmpty
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;

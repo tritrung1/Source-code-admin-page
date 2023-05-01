@@ -20,16 +20,12 @@ public class OrderStatus extends DateAudit {
     @Column(name = "id")
     private Long id;
 
-    @NotEmpty
     @Column(name = "order_status_uuid")
     private String orderStatusUuid;
 
-    @NotEmpty
-    @Size(min = 2)
     @Column(name = "name")
     private String name;
 
-    @Size(min = 5)
     @OneToMany(mappedBy = "orderStatus")
     private List<Order> orders;
 

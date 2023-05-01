@@ -6,6 +6,8 @@ import com.training.entity.Post;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,14 +18,19 @@ import java.util.Date;
 public class NotificationDTO extends DateAudit {
     private Long id;
 
+    @NotEmpty(message = "Field can't be empty!")
     private String notificationUuid;
 
+    @NotEmpty(message = "Field can't be empty!")
     private String notificationCode;
 
+    @NotNull(message = "Field can't be empty!")
     private Long merchantId;
 
+    @NotNull(message = "Field can't be empty!")
     private Long postId;
 
+    @NotEmpty(message = "Field can't be empty!")
     private String notificationType;
 
     private Account account;
