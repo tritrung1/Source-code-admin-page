@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.validation.constraints.*;
 
 
 @Getter
@@ -23,12 +24,16 @@ public class Category extends DateAudit {
     @Column(name = "id")
     private Long id;
 
+    @NotEmpty
     @Column(name = "category_uuid")
     private String categoryUuid;
 
+    @NotEmpty
+    @Size(min = 2)
     @Column(name = "category_name")
     private String categoryName;
 
+    @NotEmpty
     @OneToMany(targetEntity = Product.class, mappedBy = "category")
     @JsonManagedReference
     private List<Product> products;

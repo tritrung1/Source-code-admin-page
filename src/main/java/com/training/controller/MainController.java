@@ -7,8 +7,10 @@ import com.training.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -69,7 +71,11 @@ public class MainController {
     }
 
     @PostMapping("/update-account")
-    public String updateAccount(@ModelAttribute("accountDTO") AccountDTO accountDTO) {
+    public String updateAccount(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO,
+                                BindingResult result) {
+        if (result.hasErrors()) {
+            return "index";
+        }
         accountService.save(accountDTO);
         return "redirect:/accounts";
     }
@@ -84,7 +90,11 @@ public class MainController {
         return "index";
     }
     @PostMapping(value = "/create-account")
-    public String createAccount(@ModelAttribute("accountDTO") AccountDTO accountDTO) {
+    public String createAccount(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO,
+                                BindingResult result) {
+        if (result.hasErrors()) {
+            return "index";
+        }
         accountService.save(accountDTO);
         return "redirect:/accounts";
     }
@@ -122,7 +132,11 @@ public class MainController {
     }
 
     @PostMapping("/post-manage/rejected/{id}")
-    public String rejectPost(@PathVariable Long id, @RequestParam String rejectMsg) {
+    public String rejectPost(@Valid @PathVariable Long id, @RequestParam String rejectMsg,
+                             BindingResult result) {
+        if (result.hasErrors()) {
+            return "index";
+        }
         PostDTO postDTO = postService.findById(id);
         postDTO.setReason(rejectMsg);
         postDTO.setStatus("rejected");
@@ -159,7 +173,11 @@ public class MainController {
         return "index";
     }
     @PostMapping("/save-product")
-    public String saveProduct(@ModelAttribute("productForm") ProductDTO productDTO) {
+    public String saveProduct(@Valid @ModelAttribute("productForm") ProductDTO productDTO,
+                              BindingResult result) {
+        if (result.hasErrors()) {
+            return "index";
+        }
         productDTO = productService.save(productDTO);
 
         //save price in same time with product
@@ -195,7 +213,11 @@ public class MainController {
     }
 
     @PostMapping("/save-edit-product")
-    public String saveProduct(Model model, @ModelAttribute("productDTO") ProductDTO productDTO, @RequestParam Long id) {
+    public String saveProduct(@Valid Model model, @ModelAttribute("productDTO") ProductDTO productDTO,
+                              @RequestParam Long id, BindingResult result) {
+        if (result.hasErrors()) {
+            return "index";
+        }
         model.addAttribute("pageTitle", "Edit Product " + productDTO.getProductName());
         productService.save(productDTO);
         ProductDTO check = productService.findById(id);
@@ -249,7 +271,11 @@ public class MainController {
     }
 
     @RequestMapping(value = "/answer-feedback", method = RequestMethod.POST)
-    public String saveAnswer(@RequestParam Long id, @RequestParam String reply) {
+    public String saveAnswer(@Valid @RequestParam Long id, @RequestParam String reply,
+                             BindingResult result) {
+        if (result.hasErrors()) {
+            return "index";
+        }
         FeedbackDTO feedbackDTO = feedbackService.findById(id);
 
         feedbackDTO.setActive(false);
