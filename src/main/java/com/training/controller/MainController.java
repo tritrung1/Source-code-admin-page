@@ -1,5 +1,8 @@
 package com.training.controller;
 import com.training.dto.*;
+import com.training.entity.Post;
+import com.training.entity.Product;
+import com.training.mapper.ProductMapper;
 import com.training.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,10 @@ public class MainController {
     PriceService priceService;
     @Autowired
     ImportService importService;
+    @Autowired
+    PostService postService;
+    @Autowired
+    ProductMapper productMapper;
 
     @GetMapping("/login")
     public String login() {
@@ -36,13 +43,13 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/index"})
     public String getInit(Model model) {
-        model.addAttribute("direction","container/init");
+        model.addAttribute("direction", "container/init");
         return "index";
     }
 
     @RequestMapping("/products")
     public String products(Model model) {
-        model.addAttribute("direction","container/products");
+        model.addAttribute("direction", "container/products");
 
         List<ProductDTO> products = productService.findAll();
         model.addAttribute("products", products);
@@ -56,19 +63,19 @@ public class MainController {
     @GetMapping("/accounts")
     public String accounts(Model model) {
         List<AccountDTO> accounts = accountService.findAll();
-        model.addAttribute("direction","container/accounts");
-        model.addAttribute("accountList", accounts );
+        model.addAttribute("direction", "container/accounts");
+        model.addAttribute("accountList", accounts);
         return "index";
     }
 
     @PostMapping("/update-account")
-    public String updateAccount(@ModelAttribute("accountDTO")AccountDTO accountDTO) {
+    public String updateAccount(@ModelAttribute("accountDTO") AccountDTO accountDTO) {
         accountService.save(accountDTO);
         return "redirect:/accounts";
     }
 
-    @GetMapping (value = "/update-account-form/{id}")
-    public String updateAccountForm(Model model, @PathVariable(value ="id") Long id)  {
+    @GetMapping(value = "/update-account-form/{id}")
+    public String updateAccountForm(Model model, @PathVariable(value = "id") Long id) {
         model.addAttribute("direction", "container/update-account");
 
         AccountDTO accountDTO = accountService.findById(id);
@@ -77,7 +84,7 @@ public class MainController {
         return "index";
     }
     @PostMapping(value = "/create-account")
-    public String createAccount(@ModelAttribute("accountDTO")AccountDTO accountDTO) {
+    public String createAccount(@ModelAttribute("accountDTO") AccountDTO accountDTO) {
         accountService.save(accountDTO);
         return "redirect:/accounts";
     }
@@ -91,29 +98,48 @@ public class MainController {
     }
 
     @RequestMapping(value = "/delete-account/{id}")
-    public String deleteAccount(@PathVariable(value ="id") Long id) {
+    public String deleteAccount(@PathVariable(value = "id") Long id) {
         AccountDTO createAccount = accountService.findById(id);
         accountService.delete(createAccount);
         return "redirect:/accounts";
     }
 
-    // end account
-    @RequestMapping("/post-manage")
+    @GetMapping("/post-manage")
     public String postManage(Model model) {
-        model.addAttribute("direction","container/post-manage");
+        model.addAttribute("direction", "container/post-manage");
+        List<PostDTO> postDTOs = postService.findByStatusEqualsIgnoreCase();
+        model.addAttribute("listPost", postDTOs);
+
         return "index";
+    }
+
+    @GetMapping("/post-manage/approved/{id}")
+    public String acceptPost(@PathVariable Long id) {
+        PostDTO postDTO = postService.findById(id);
+        postDTO.setStatus("approved");
+        postService.save(postDTO);
+        return "redirect:/post-manage";
+    }
+
+    @PostMapping("/post-manage/rejected/{id}")
+    public String rejectPost(@PathVariable Long id, @RequestParam String rejectMsg) {
+        PostDTO postDTO = postService.findById(id);
+        postDTO.setReason(rejectMsg);
+        postDTO.setStatus("rejected");
+        postService.save(postDTO);
+        return "redirect:/post-manage";
     }
 
     @RequestMapping("/order-list-manage")
     public String orderList(Model model) {
-        model.addAttribute("direction","container/order-list-manage");
+        model.addAttribute("direction", "container/order-list-manage");
         model.addAttribute("orders", orderService.findAll());
         return "index";
     }
 
     @RequestMapping("/notification-manage")
     public String notification(Model model) {
-        model.addAttribute("direction","container/notification-manage");
+        model.addAttribute("direction", "container/notification-manage");
 
         List<NotificationDTO> notifications = notificationService.findAll();
         model.addAttribute("notifications", notifications);
@@ -133,20 +159,26 @@ public class MainController {
         return "index";
     }
     @PostMapping("/save-product")
-    public String saveProduct(Model model,@ModelAttribute("productDTO") ProductDTO productDTO) {
-        model.addAttribute("pageTitle", "Edit Product " + productDTO.getProductName());
-        productService.save(productDTO);
+    public String saveProduct(@ModelAttribute("productForm") ProductDTO productDTO) {
+        productDTO = productService.save(productDTO);
 
-//        save price in same time with product
+        //save price in same time with product
         PriceDTO priceDTO = new PriceDTO();
         priceDTO.setProductCode(productDTO.getProductCode());
         priceDTO.setPrice(productDTO.getPrice());
         priceService.save(priceDTO);
-//        save import in same time with product
+        //save import in same time with product
         ImportDTO importDTO = new ImportDTO();
         importDTO.setProductCode(productDTO.getProductCode());
         importDTO.setImportQuantity(productDTO.getImportQuantity());
         importService.save(importDTO);
+
+        //save Post
+        PostDTO postDTO = new PostDTO();
+        postDTO.setProduct(productMapper.convertDTOToEntity(productDTO));
+        postDTO.setStatus("pending");
+        postService.save(postDTO);
+
         return "redirect:/products";
     }
 
@@ -173,6 +205,8 @@ public class MainController {
             priceDTO.setProductCode(productDTO.getProductCode());
             priceDTO.setPrice(productDTO.getPrice());
             priceService.save(priceDTO);
+        }
+        if (Double.compare(productDTO.getImportQuantity(), check.getImportQuantity()) != 0) {
             //save import in same time with product
             ImportDTO importDTO = new ImportDTO();
             importDTO.setProductCode(productDTO.getProductCode());

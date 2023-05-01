@@ -1,5 +1,6 @@
 package com.training.entity;
 
+import lombok.*;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
@@ -22,8 +23,9 @@ public class Post extends DateAudit {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "post_uuid")
-    private String postUuid;
+    @Column(name = "post_id")
+    @GeneratedValue
+    private UUID postId;
 
     @Column(name = "expired_date")
     private Date expiredDate;
@@ -31,15 +33,16 @@ public class Post extends DateAudit {
     @Column(name = "reason")
     private String reason;
 
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = "status")
+    private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    private Account account;
+    // one to one with table product
+    @OneToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 
-    @OneToMany(mappedBy = "post")
-    private List<Product> products;
+    @Column(name = "account_id")
+    private String accountID;
 
     @OneToMany(mappedBy = "post")
     private List<Notification> notifications;

@@ -78,4 +78,12 @@ public class PostServiceImpl implements PostService {
             return false;
         }
     }
+
+    @Override
+    public List<PostDTO> findByStatusEqualsIgnoreCase() {
+        List<Post> posts = postRepository.findByStatusEqualsIgnoreCase();
+        return posts == null || posts.size() == 0 ? new ArrayList<>()
+                : posts.stream().map(item -> postMapper.convertEntityToDTO(item))
+                .collect(Collectors.toList());
+    }
 }

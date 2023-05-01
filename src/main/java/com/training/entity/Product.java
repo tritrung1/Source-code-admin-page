@@ -52,27 +52,23 @@ public class Product extends DateAudit {
     @Column(name = "importQuantity")
     private Integer importQuantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    //many to one with table category
+    @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonBackReference
     private Category category;
+
+    //one to one with table post
+    @OneToOne(mappedBy = "product")
+    private Post post;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
-    private Post post;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feedback_id")
     private Feedback feedback;
-
-    @OneToMany(mappedBy = "product")
-    private List<Price> prices;
-
-    @OneToMany(mappedBy = "product")
-    private List<Import> imports;
 
     @OneToMany(mappedBy = "product")
     private List<Order> orders;

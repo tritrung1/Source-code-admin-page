@@ -17,18 +17,12 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PostDTO extends DateAudit {
     private Long id;
-
     private String postUuid;
-
     private Date expiredDate;
-
     private String reason;
-
-    private Boolean active;
-
-    private Account account;
-
-    private List<Product> products;
-
+    private String status;;
+    private Product product;
+    private String accountID;
     private List<Notification> notifications;
 }
+
