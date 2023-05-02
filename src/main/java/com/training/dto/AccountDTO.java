@@ -56,5 +56,4 @@ public class AccountDTO extends DateAudit {
 
     private List<Report> reports;
 
-    private List<News> news;
 }

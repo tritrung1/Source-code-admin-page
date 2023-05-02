@@ -1,15 +1,14 @@
 package com.training.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 @Getter
@@ -27,20 +26,17 @@ public class News extends DateAudit {
     @Column(name = "news_uuid")
     private String newsUuid;
 
-    @Column(name = "push_code")
-    private String pushCode;
-
     @Column(name = "push_date")
     private Date pushDate;
 
     @Column(name = "expired_date")
     private Date expiredDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    private Account account;
+    @OneToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @Column(name = "account_id")
+    private String accountId;
+
 }

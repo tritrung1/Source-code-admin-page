@@ -25,7 +25,6 @@ public class PostDTO extends DateAudit {
     @NotEmpty(message = "Field can't be empty!")
     private Date expiredDate;
 
-    @NotNull(message = "Field can't be null!")
     private String reason;
 
     @NotEmpty(message = "Field can't be empty!")
@@ -33,8 +32,7 @@ public class PostDTO extends DateAudit {
 
     private Product product;
 
-    @NotEmpty(message = "Field can't be empty!")
-    private String accountID;
+    private String accountId;
 
     private List<Notification> notifications;
 }

@@ -9,7 +9,6 @@
                         <thead>
                         <tr>
                             <th scope="col">&nbsp;</th>
-                            <th scope="col">PUSH CODE</th>
                             <th scope="col">PUSH DATE</th>
                             <th scope="col">ACCOUNT NAME</th>
                             <th scope="col">EXPIRED DATE</th>
@@ -20,13 +19,12 @@
                         <tbody>
                         <tr th:each="news:${news}">
                             <th scope="row" th:text="${news.id}"><input type="checkbox" /></th>
-                            <td th:text="${news.pushCode}"/>
                             <td th:text="${news.pushDate}"/>
                             <td class="tm-user-name" th:text="${news.accountId}"/>
                             <td th:text="${news.expiredDate}"/>
-                            <td th:text="${news.product.productName}"/>
+                            <td th:text="${news.post.product.productName}"/>
                             <td>
-                                <a th:href="@{'/delete-news/' + ${news.id}}" class="tm-product-update-link">
+                                <a th:href="@{'/news/push/' + ${news.id}}" class="tm-product-update-link">
                                     <i class="fas fa-arrow-up tm-product-update-icon"></i>
                                 </a>
                             </td>

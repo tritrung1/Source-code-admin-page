@@ -3,6 +3,7 @@ package com.training.service.impl;
 import com.fasterxml.uuid.Generators;
 import com.training.dto.NewsDTO;
 import com.training.entity.News;
+import com.training.entity.Post;
 import com.training.mapper.NewsMapper;
 import com.training.repository.NewsRepository;
 import com.training.service.NewsService;

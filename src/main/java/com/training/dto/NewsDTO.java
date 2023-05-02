@@ -1,13 +1,17 @@
 package com.training.dto;
 
 import com.training.entity.Account;
+import com.training.entity.Post;
 import com.training.entity.Product;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
+import javax.persistence.Column;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -19,16 +23,12 @@ public class NewsDTO extends DateAudit {
     @NotEmpty(message = "Field can't be empty!")
     private String newsUuid;
 
-    @NotEmpty(message = "Field can't be empty!")
-    private String pushCode;
-
-    @NotEmpty(message = "Field can't be empty!")
     private Date pushDate;
 
-    @NotEmpty(message = "Field can't be empty!")
     private Date expiredDate;
 
-    private Account account;
+    private Post post;
 
-    private Product product;
+    private String accountId;
+
 }

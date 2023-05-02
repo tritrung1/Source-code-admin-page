@@ -80,8 +80,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDTO> findByStatusEqualsIgnoreCase() {
-        List<Post> posts = postRepository.findByStatusEqualsIgnoreCase();
+    public List<PostDTO> findByStatusPending() {
+        List<Post> posts = postRepository.findByStatusPending();
         return posts == null || posts.size() == 0 ? new ArrayList<>()
                 : posts.stream().map(item -> postMapper.convertEntityToDTO(item))
                 .collect(Collectors.toList());

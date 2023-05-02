@@ -64,6 +64,4 @@ public class Account extends DateAudit {
     @OneToMany(mappedBy = "account")
     private List<Report> reports;
 
-    @OneToMany(mappedBy = "account")
-    private List<News> news;
 }

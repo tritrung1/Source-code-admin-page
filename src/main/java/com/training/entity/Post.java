@@ -1,5 +1,6 @@
 package com.training.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
@@ -39,10 +40,12 @@ public class Post extends DateAudit {
     // one to one with table product
     @OneToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JsonBackReference
     private Product product;
 
+
     @Column(name = "account_id")
-    private String accountID;
+    private String accountId;
 
     @OneToMany(mappedBy = "post")
     private List<Notification> notifications;

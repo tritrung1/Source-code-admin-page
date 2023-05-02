@@ -13,7 +13,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post,Long>, CrudRepository<Post, Long> {
     @Modifying
     @Query(value = "select * from POST where status = 'pending'",nativeQuery = true)
-    List<Post> findByStatusEqualsIgnoreCase();
+    List<Post> findByStatusPending();
 }
 
 

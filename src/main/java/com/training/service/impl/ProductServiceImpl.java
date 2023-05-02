@@ -78,4 +78,12 @@ public class ProductServiceImpl implements ProductService {
             return false;
         }
     }
+
+    @Override
+    public List<ProductDTO> findAllByCategory(String categoryName) {
+        List<Product> product_by_category = productRepository.findAllByCategory_CategoryName(categoryName);
+        return product_by_category == null || product_by_category.size() == 0 ? new ArrayList<>()
+                : product_by_category.stream().map(item -> productMapper.convertEntityToDTO(item))
+                .collect(Collectors.toList());
+    }
 }

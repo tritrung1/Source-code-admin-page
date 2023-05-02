@@ -1,15 +1,20 @@
 package com.training.controller;
 
 import com.training.consts.ApiPath;
+import com.training.dto.CategoryDTO;
 import com.training.dto.ProductDTO;
 import com.training.repository.ProductRepository;
 import com.training.service.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Slf4j
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
@@ -41,5 +46,19 @@ public class ProductController {
     public String deleteProduct(@RequestBody ProductDTO newProduct) {
         boolean isDelete = service.delete(newProduct);
         return  isDelete ? "Delete success!!!" : "Delete fail!!!";
+    }
+
+    @GetMapping(value = ApiPath.PRODUCT_BY_CATEGORY)
+    public ResponseEntity<List<ProductDTO>> getProductByCategory(@RequestBody CategoryDTO categoryDTO) {
+        try {
+            if (null == categoryDTO || null == categoryDTO.getCategoryName()) {
+                return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+            List<ProductDTO> list = service.findAllByCategory(categoryDTO.getCategoryName());
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        } catch (Exception ex) {
+            log.error("Error when get product by category:", ex);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

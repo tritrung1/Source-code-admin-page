@@ -16,10 +16,8 @@ import java.util.List;
 public class ProductDTO extends DateAudit {
     private Long id;
 
-    @NotEmpty(message = "Field can't be empty!")
     private String productUuid;
 
-    @NotEmpty(message = "Field can't be empty!")
     private String productImage;
 
     @NotEmpty(message = "Field can't be empty!")
@@ -60,5 +58,4 @@ public class ProductDTO extends DateAudit {
 
     private List<Order> orders;
 
-    private List<News> news;
 }

@@ -2,6 +2,7 @@ package com.training.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
@@ -61,6 +62,7 @@ public class Product extends DateAudit {
 
     //one to one with table post
     @OneToOne(mappedBy = "product")
+    @JsonManagedReference
     private Post post;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -74,6 +76,4 @@ public class Product extends DateAudit {
     @OneToMany(mappedBy = "product")
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "product")
-    private List<News> news;
 }

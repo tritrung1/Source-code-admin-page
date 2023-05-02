@@ -2,8 +2,10 @@ package com.training.controller;
 import com.training.dto.*;
 import com.training.entity.Post;
 import com.training.entity.Product;
+import com.training.mapper.PostMapper;
 import com.training.mapper.ProductMapper;
 import com.training.service.*;
+import org.exolab.castor.types.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class MainController {
@@ -38,6 +48,8 @@ public class MainController {
     @Autowired
     ProductMapper productMapper;
 
+    @Autowired
+    PostMapper postMapper;
     @GetMapping("/login")
     public String login() {
         return "login_file";
@@ -117,7 +129,7 @@ public class MainController {
     @GetMapping("/post-manage")
     public String postManage(Model model) {
         model.addAttribute("direction", "container/post-manage");
-        List<PostDTO> postDTOs = postService.findByStatusEqualsIgnoreCase();
+        List<PostDTO> postDTOs = postService.findByStatusPending();
         model.addAttribute("listPost", postDTOs);
 
         return "index";
@@ -128,15 +140,16 @@ public class MainController {
         PostDTO postDTO = postService.findById(id);
         postDTO.setStatus("approved");
         postService.save(postDTO);
+        //save News
+        NewsDTO newsDTO = new NewsDTO();
+        newsDTO.setPost(postMapper.convertDTOToEntity(postDTO));
+        newsService.save(newsDTO);
+
         return "redirect:/post-manage";
     }
 
     @PostMapping("/post-manage/rejected/{id}")
-    public String rejectPost(@Valid @PathVariable Long id, @RequestParam String rejectMsg,
-                             BindingResult result) {
-        if (result.hasErrors()) {
-            return "redirect:/post-manage/approved/{id}";
-        }
+    public String rejectPost(@PathVariable Long id, @RequestParam String rejectMsg) {
         PostDTO postDTO = postService.findById(id);
         postDTO.setReason(rejectMsg);
         postDTO.setStatus("rejected");
@@ -173,10 +186,11 @@ public class MainController {
         return "index";
     }
     @PostMapping("/save-product")
-    public String saveProduct(@Valid @ModelAttribute("productForm") ProductDTO productDTO,
+    public String saveProduct(@Valid @ModelAttribute("productForm") ProductDTO productDTO, Model model,
                               BindingResult result) {
         if (result.hasErrors()) {
-            return "redirect:/add-product";
+            model.addAttribute("direction","container/add-product");
+            return "index";
         }
         productDTO = productService.save(productDTO);
 
@@ -255,11 +269,30 @@ public class MainController {
     @GetMapping("/news")
     public String news(Model model) {
         model.addAttribute("direction", "container/news");
-
         List<NewsDTO> news = newsService.findAll();
         model.addAttribute("news", news);
-
         return "index";
+    }
+
+    @GetMapping("/news/push/{id}")
+    public String pushNews(Model model, @PathVariable(value = "id") Long id) {
+        NewsDTO newsDTO = newsService.findById(id);
+
+        String DATE_FORMAT = "yyyy/MM/dd HH:mm:ss";
+        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        DateTimeFormatter dateFormat8 = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        Date currentDate = new Date();
+        // convert date to localdatetime
+        LocalDateTime localDateTime = currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        localDateTime = localDateTime.plusYears(0).plusMonths(0).plusDays(5);
+        //localDateTime = localDateTime.plusHours(0).plusMinutes(0).minusMinutes(0).plusSeconds(0);
+        Date modifiedDate = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        newsDTO.setPushDate(currentDate);
+        newsDTO.setExpiredDate(modifiedDate);
+
+        newsService.save(newsDTO);
+        return "redirect:/news";
     }
 
     @RequestMapping(value = "/feedback", method = RequestMethod.GET)

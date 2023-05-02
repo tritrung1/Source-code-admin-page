@@ -33,6 +33,7 @@ public interface ApiPath {
     String PRODUCT_DELETE = API + "/product/delete";
     String PRODUCT_UPDATE = API + "/product/update";
     String PRODUCT_BY_ID = API + "/product/{id}";
+    String PRODUCT_BY_CATEGORY = API + "/product/find-by-category";
 
     //price
     String PRICE_GET_ALL = API + "/prices";
