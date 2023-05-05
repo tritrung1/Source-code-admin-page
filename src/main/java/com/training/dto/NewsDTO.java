@@ -23,7 +23,15 @@ public class NewsDTO extends DateAudit {
     @NotEmpty(message = "Field can't be empty!")
     private String newsUuid;
 
+    private Integer storageQuantity;
+
+    private Double sales;
+
     private Date pushDate;
+
+    private Date beginDate;
+
+    private Date endDate;
 
     private Date expiredDate;
 

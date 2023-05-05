@@ -23,6 +23,9 @@ public class OrderDTO extends DateAudit {
     private String orderCode;
 
     @NotEmpty(message = "Field can't be empty!")
+    private Integer soldQuantity;
+
+    @NotEmpty(message = "Field can't be empty!")
     private String paymentMethod;
 
     @NotNull(message = "Field can't be null!")

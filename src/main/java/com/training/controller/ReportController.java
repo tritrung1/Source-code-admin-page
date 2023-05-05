@@ -51,4 +51,9 @@ public class ReportController {
         return service.exportReport(type);
     }
 
+    @GetMapping("/daily_reports/{type}")
+    public String generateDailyReport(@PathVariable String type) throws JRException, FileNotFoundException {
+        return service.exportDailyReport(type);
+    }
+
 }

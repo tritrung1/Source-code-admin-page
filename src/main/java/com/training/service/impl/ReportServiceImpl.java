@@ -2,9 +2,11 @@ package com.training.service.impl;
 
 import com.fasterxml.uuid.Generators;
 import com.training.dto.ReportDTO;
+import com.training.entity.News;
 import com.training.entity.Product;
 import com.training.entity.Report;
 import com.training.mapper.ReportMapper;
+import com.training.repository.NewsRepository;
 import com.training.repository.ProductRepository;
 import com.training.repository.ReportRepository;
 import com.training.service.ProductService;
@@ -26,6 +28,8 @@ public class ReportServiceImpl implements ReportService {
     ReportRepository reportRepository;
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    NewsRepository newsRepository;
 
     @Autowired
     ReportMapper reportMapper;
@@ -102,6 +106,26 @@ public class ReportServiceImpl implements ReportService {
         }
         if (reportType.equalsIgnoreCase("pdf")) {
             JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\ProductReport.pdf");
+        }
+
+        return "report generated in path : " + path;
+    }
+
+    @Override
+    public String exportDailyReport(String reportType) throws FileNotFoundException, JRException {
+        String path = "D:\\FPT\\Part 6 - Mock Project\\report";
+        List<News> news = newsRepository.findAll();
+        File file = ResourceUtils.getFile("classpath:Daily_Report.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(news);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("createdBy", "Thanh");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        if (reportType.equalsIgnoreCase("html")) {
+            JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\DailyReport.html");
+        }
+        if (reportType.equalsIgnoreCase("pdf")) {
+            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\DailyReport.pdf");
         }
 
         return "report generated in path : " + path;

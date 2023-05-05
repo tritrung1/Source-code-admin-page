@@ -26,6 +26,9 @@ public class Order extends DateAudit {
     @Column(name = "order_code")
     private String orderCode;
 
+    @Column(name = "sold_quantity")
+    private Integer soldQuantity;
+
     @Column(name = "payment_method")
     private String paymentMethod;
 

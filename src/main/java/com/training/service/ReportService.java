@@ -7,4 +7,5 @@ import java.io.FileNotFoundException;
 
 public interface ReportService extends BaseService<ReportDTO> {
     String exportReport(String reportType) throws FileNotFoundException , JRException;
+    String exportDailyReport(String reportType) throws FileNotFoundException , JRException;
 }

@@ -269,7 +269,7 @@ public class MainController {
     @GetMapping("/news")
     public String news(Model model) {
         model.addAttribute("direction", "container/news");
-        List<NewsDTO> news = newsService.findAll();
+        List<NewsDTO> news = newsService.findBySoldDatePending();
         model.addAttribute("news", news);
         return "index";
     }

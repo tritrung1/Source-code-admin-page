@@ -3,7 +3,6 @@ package com.training.service.impl;
 import com.fasterxml.uuid.Generators;
 import com.training.dto.NewsDTO;
 import com.training.entity.News;
-import com.training.entity.Post;
 import com.training.mapper.NewsMapper;
 import com.training.repository.NewsRepository;
 import com.training.service.NewsService;
@@ -78,5 +77,13 @@ public class NewsServiceImpl implements NewsService {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<NewsDTO> findBySoldDatePending() {
+        List<News> news = newsRepository.findBySoldDatePending();
+        return news == null || news.size() == 0 ? new ArrayList<>()
+                : news.stream().map(item -> newsMapper.convertEntityToDTO(item))
+                .collect(Collectors.toList());
     }
 }
