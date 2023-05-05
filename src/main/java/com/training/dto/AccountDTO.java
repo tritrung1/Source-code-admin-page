@@ -16,17 +16,16 @@ import java.util.UUID;
 public class AccountDTO extends DateAudit {
     private Long id;
 
-    @NotEmpty(message = "Field can't be empty!")
-    private String accountUuid;
+//    @NotEmpty(message = "Field can't be empty!")
+    private String accountUuid;;
 
-    @NotEmpty(message = "Field can't be empty!")
-    private String accountImg;
-
-    @NotEmpty(message = "Field can't be empty!")
     private String bannerImg;
 
-    @NotNull(message = "Field can't be null!")
-    private Long merchantId;
+    private String accountImgPath;
+
+    private String accountImg;
+
+    private String bannerImgPath;
 
     @NotEmpty(message = "Field can't be empty!")
     @Size(min = 5, message = "Field should have at least 5 characters")
@@ -43,7 +42,6 @@ public class AccountDTO extends DateAudit {
     @NotEmpty(message = "Field can't be empty!")
     private String address;
 
-    @NotEmpty(message = "Field can't be empty!")
     private Boolean active;
 
     private Role role;

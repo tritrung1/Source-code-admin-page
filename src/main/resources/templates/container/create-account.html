@@ -42,10 +42,9 @@
                     </div>
                     <div class="form-group col-lg-6">
                         <label for="role">Role</label>
-                        <select class="custom-select tm-select-accounts" id="role">
-                            <option selected>Select role</option>
-                            <option value="1">Merchant</option>
-                            <option value="2">Admin</option>
+                        <select th:field="*{role}" class="custom-select tm-select-accounts" id="role">
+                            <option th:each="role:${roles}" th:value="${role.id}"
+                                    th:text="${role.roleName}">Select role</option>
                         </select>
                     </div>
                     <div class="form-group col-12">
@@ -57,11 +56,6 @@
                         <label for="BannerImage">Banner Image</label>
                         <input th:field="*{bannerImg}" id="BannerImage" name="BannerImage" type="text" class="form-control validate" />
                         <p th:if="${#fields.hasErrors('bannerImg')}" class="error" th:errors="*{bannerImg}" />
-                    </div>
-                    <div class="form-group col-12">
-                        <label for="Active">Active</label>
-                        <input th:field="*{active}" id="Active" name="Active" type="text" class="form-control validate"/>
-                        <p th:if="${#fields.hasErrors('active')}" class="error" th:errors="*{active}" />
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-block text-uppercase" >

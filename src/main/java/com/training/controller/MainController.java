@@ -47,7 +47,8 @@ public class MainController {
     PostService postService;
     @Autowired
     ProductMapper productMapper;
-
+    @Autowired
+    RoleService roleService;
     @Autowired
     PostMapper postMapper;
     @GetMapping("/login")
@@ -113,9 +114,16 @@ public class MainController {
 
     @GetMapping(value = "/create-account-form")
     public String createAccountForm(Model model) {
+//        model.addAttribute("direction", "container/create-account");
+//        AccountDTO accountDTO = new AccountDTO();
+//        model.addAttribute("accountDTO", accountDTO);
+//        return "index";
         model.addAttribute("direction", "container/create-account");
         AccountDTO accountDTO = new AccountDTO();
         model.addAttribute("accountDTO", accountDTO);
+
+        List<RoleDTO> roles = roleService.findAll();
+        model.addAttribute("roles", roles);
         return "index";
     }
 

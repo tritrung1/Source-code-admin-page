@@ -9,9 +9,6 @@
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Account ID</th>
-                            <th scope="col">Merchant ID</th>
-                            <th scope="col">Role ID</th>
                             <th scope="col">Name</th>
 
                             <th scope="col">Email</th>
@@ -20,24 +17,20 @@
                             <th scope="col">Account Image</th>
                             <th scope="col">Banner Image</th>
 
-                            <th scope="col">Active</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="account:${accountList}">
                             <th scope="row" th:text="${account.id}"><input type="checkbox"/>
-                            <td class="tm-product-name" th:text="${account.account_id}">
-                            <td th:text="${account.merchant_id}">
-                            <td th:text="${account.role_id}">
-                            <td th:text="${account.name}">
+                            <td th:text="${account.accountName}">
 
-                            <td th:text="${account.email}">
+                            <td th:text="${account.accountEmail}">
                             <td th:text="${account.phone}">
                             <td th:text="${account.address}">
-                            <td th:text="${account.account_img}">
-                            <td th:text="${account.banner_img}">
-                            <td th:text="${account.active}">
+                            <td th:text="${account.accountImg}">
+                            <td th:text="${account.bannerImg}">
+
                             <td>
                                 <a th:href="@{'/update-account-form/' + ${account.id}}" class="tm-product-update-link">
                                     <i class="far fa-edit tm-product-update-icon">
