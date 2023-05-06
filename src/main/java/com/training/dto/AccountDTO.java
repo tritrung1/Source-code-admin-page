@@ -16,8 +16,7 @@ import java.util.UUID;
 public class AccountDTO extends DateAudit {
     private Long id;
 
-//    @NotEmpty(message = "Field can't be empty!")
-    private String accountUuid;;
+    private String accountUuid;
 
     private String bannerImg;
 

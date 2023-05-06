@@ -19,9 +19,9 @@
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
                 <h2 class="tm-block-title">Account Info</h2>
                 <form th:action="@{/create-account}" method="post" class="tm-signup-form row" th:object="${accountDTO}">
+                    <input type="hidden" th:field="*{id}" />
                     <div class="form-group col-lg-6">
                         <label for="name">Account Name</label>
-                        <input type="hidden" th:field="*{id}" />
                         <input th:field="*{accountName}" id="name" name="name" type="text" class="form-control validate" />
                         <p th:if="${#fields.hasErrors('accountName')}" class="error" th:errors="*{accountName}" />
                     </div>
@@ -35,17 +35,22 @@
                         <input th:field="*{phone}" id="phone" name="phone" type="tel" class="form-control validate" />
                         <p th:if="${#fields.hasErrors('phone')}" class="error" th:errors="*{phone}" />
                     </div>
-                    <div class="form-group col-12">
-                        <label for="address">Address</label>
-                        <input th:field="*{address}" id="address" name="address" type="address" class="form-control validate" />
-                        <p th:if="${#fields.hasErrors('address')}" class="error" th:errors="*{address}" />
-                    </div>
                     <div class="form-group col-lg-6">
                         <label for="role">Role</label>
                         <select th:field="*{role}" class="custom-select tm-select-accounts" id="role">
                             <option th:each="role:${roles}" th:value="${role.id}"
                                     th:text="${role.roleName}">Select role</option>
                         </select>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="password">Password</label>
+                        <input th:field="*{encryptedPassword}" id="password" name="password" type="password" class="form-control validate" />
+                        <p th:if="${#fields.hasErrors('encryptedPassword')}" class="error" th:errors="*{encryptedPassword}" />
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="address">Address</label>
+                        <input th:field="*{address}" id="address" name="address" type="address" class="form-control validate" />
+                        <p th:if="${#fields.hasErrors('address')}" class="error" th:errors="*{address}" />
                     </div>
                     <div class="form-group col-12">
                         <label for="accountImage">Account Image</label>
@@ -57,11 +62,10 @@
                         <input th:field="*{bannerImg}" id="BannerImage" name="BannerImage" type="text" class="form-control validate" />
                         <p th:if="${#fields.hasErrors('bannerImg')}" class="error" th:errors="*{bannerImg}" />
                     </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block text-uppercase" >
-                            CREATE ACCOUNT
-                        </button>
-                    </div>
+<!--                    <div class="col-12">-->
+<!--                        -->
+<!--                    </div>-->
+                    <input type="submit" class="btn btn-primary btn-block text-uppercase" value="CREATE ACCOUNT" >
                 </form>
             </div>
         </div>

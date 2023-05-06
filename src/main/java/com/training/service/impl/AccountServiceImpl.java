@@ -7,12 +7,17 @@ import com.training.mapper.AccountMapper;
 import com.training.repository.AccountRepository;
 import com.training.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -83,4 +88,12 @@ public class AccountServiceImpl implements AccountService {
             return false;
         }
     }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String accountName) throws UsernameNotFoundException {
+//        Principal principal = new Principal();
+//        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+//        String roleNames = accountRepository.getRoleNames();
+//
+//    }
 }

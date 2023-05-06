@@ -36,9 +36,6 @@ public class Account extends DateAudit {
     @Column(name = "banner_img_path")
     private String bannerImgPath;
 
-    @Column(name = "merchant_id")
-    private Long merchantId;
-
     @Column(name = "account_name")
     private String accountName;
 

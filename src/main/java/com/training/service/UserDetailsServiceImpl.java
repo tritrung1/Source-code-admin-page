@@ -2,8 +2,6 @@ package com.training.service;
 
 import com.training.entity.Account;
 import com.training.repository.Login;
-import com.training.service.impl.AccountServiceImpl;
-import com.training.service.impl.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

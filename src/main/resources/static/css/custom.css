@@ -22,3 +22,7 @@
 .custom-bottom {
     margin-bottom: 70px;
 }
+
+.error {
+    color: red;
+}

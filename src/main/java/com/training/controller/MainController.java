@@ -5,6 +5,7 @@ import com.training.entity.Product;
 import com.training.mapper.PostMapper;
 import com.training.mapper.ProductMapper;
 import com.training.service.*;
+import com.training.utils.EncryptedPasswordUtils;
 import com.training.utils.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -53,6 +54,9 @@ public class MainController {
     RoleService roleService;
     @Autowired
     PostMapper postMapper;
+
+    EncryptedPasswordUtils changePasswordToEncryptedPassword;
+
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login() {
         return "login_file";
@@ -99,7 +103,8 @@ public class MainController {
     }
     // start account
     @RequestMapping(value = "/accounts", method = RequestMethod.GET)
-    public String accounts(Model model, Principal principal) {
+    public String accounts(Model model) {
+
         List<AccountDTO> accounts = accountService.findAll();
         model.addAttribute("direction", "container/accounts");
         model.addAttribute("accountList", accounts);
@@ -127,10 +132,13 @@ public class MainController {
     }
     @PostMapping(value = "/create-account")
     public String createAccount(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO,
-                                BindingResult result) {
+                                BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "redirect:/create-account-form";
+            model.addAttribute("direction", "container/create-account");
+            return "index";
         }
+        String password = changePasswordToEncryptedPassword.encryptedPassword(accountDTO.getEncryptedPassword());
+        accountDTO.setEncryptedPassword(password);
         accountService.save(accountDTO);
         return "redirect:/accounts";
     }
