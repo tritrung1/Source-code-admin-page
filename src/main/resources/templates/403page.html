@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="components/header :: header"></head>
+
+<body>
+
+<div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+        <div class="col-12 mx-auto tm-login-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 th:if="${message !=null}" th:utext="${message}" style="color: red;"></h3>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a th:href="@{/index}" class="btn btn-info">Back to menu</a>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div th:if = "${userInfo != null}" th:utext="${userInfo}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<script src="js/jquery-3.3.1.min.js"></script>-->
+<!--&lt;!&ndash; https://jquery.com/download/ &ndash;&gt;-->
+<!--<script src="js/bootstrap.min.js"></script>-->
+<!--&lt;!&ndash; https://getbootstrap.com/ &ndash;&gt;-->
+</body>
+</html>

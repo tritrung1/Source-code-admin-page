@@ -5,17 +5,19 @@ import com.training.entity.Product;
 import com.training.mapper.PostMapper;
 import com.training.mapper.ProductMapper;
 import com.training.service.*;
-import org.exolab.castor.types.DateTime;
+import com.training.utils.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -51,12 +53,33 @@ public class MainController {
     RoleService roleService;
     @Autowired
     PostMapper postMapper;
-    @GetMapping("/login")
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login() {
         return "login_file";
     }
 
-    @RequestMapping(value = {"/", "/index"})
+    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+    public String logoutSuccessfulPage (Model model) {
+        return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String accessDenied (Model model, Principal principal) {
+
+        if (principal != null) {
+            User loginedUser = (User) ((Authentication) principal).getPrincipal();
+
+            String userInfo = WebUtils.toString(loginedUser);
+            model.addAttribute("userInfo", userInfo);
+
+            String message = "Hi " + principal.getName() + "<br> You do not have permission to access this page!";
+            model.addAttribute("message", message);
+
+        }
+        return "403Page";
+    }
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String getInit(Model model) {
         model.addAttribute("direction", "container/init");
         return "index";
@@ -75,8 +98,8 @@ public class MainController {
         return "index";
     }
     // start account
-    @GetMapping("/accounts")
-    public String accounts(Model model) {
+    @RequestMapping(value = "/accounts", method = RequestMethod.GET)
+    public String accounts(Model model, Principal principal) {
         List<AccountDTO> accounts = accountService.findAll();
         model.addAttribute("direction", "container/accounts");
         model.addAttribute("accountList", accounts);
@@ -157,7 +180,11 @@ public class MainController {
     }
 
     @PostMapping("/post-manage/rejected/{id}")
-    public String rejectPost(@PathVariable Long id, @RequestParam String rejectMsg) {
+    public String rejectPost(@Valid @PathVariable Long id, @RequestParam String rejectMsg,
+                             BindingResult result) {
+        if (result.hasErrors()) {
+            return "redirect:/post-manage/approved/{id}";
+        }
         PostDTO postDTO = postService.findById(id);
         postDTO.setReason(rejectMsg);
         postDTO.setStatus("rejected");
@@ -277,7 +304,7 @@ public class MainController {
     @GetMapping("/news")
     public String news(Model model) {
         model.addAttribute("direction", "container/news");
-        List<NewsDTO> news = newsService.findBySoldDatePending();
+        List<NewsDTO> news = newsService.findAll();
         model.addAttribute("news", news);
         return "index";
     }

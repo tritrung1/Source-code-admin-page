@@ -7,7 +7,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/db.admin
     username: root
-    password: 159357
+    password:
 
   rest-template:
     read-timeout: 15000

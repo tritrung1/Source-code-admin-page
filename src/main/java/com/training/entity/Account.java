@@ -13,11 +13,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name ="account")
+@Table(name ="account", uniqueConstraints = {
+        @UniqueConstraint(name = "ACCOUNT_UK", columnNames = "account_name") })
 public class Account extends DateAudit {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "account_ids")
     private Long id;
 
     @Column(name = "account_uuid")
@@ -53,8 +54,11 @@ public class Account extends DateAudit {
     @Column(name = "active")
     private Boolean active;
 
+    @Column(name = "password",length = 128, nullable = false)
+    private String encryptedPassword;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_id", referencedColumnName = "role_ids")
     private Role role;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -70,4 +74,13 @@ public class Account extends DateAudit {
     @OneToMany(mappedBy = "account")
     private List<Report> reports;
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", accountName='" + accountName + '\'' +
+                ", accountEmail='" + accountEmail + '\'' +
+                ", encryptedPassword='" + encryptedPassword + '\'' +
+                '}';
+    }
 }

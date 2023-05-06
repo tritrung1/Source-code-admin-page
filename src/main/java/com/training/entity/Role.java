@@ -14,11 +14,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name ="Role")
+@Table(name ="Role", uniqueConstraints = {
+        @UniqueConstraint(name = "ROLE_UK", columnNames = "role_name") })
 public class Role extends DateAudit {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "role_ids")
     private Long id;
 
     @Column(name = "role_uuid")
@@ -29,4 +30,12 @@ public class Role extends DateAudit {
 
     @OneToMany(mappedBy = "role")
     private List<Account> accounts;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                '}';
+    }
 }

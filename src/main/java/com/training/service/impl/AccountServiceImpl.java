@@ -3,13 +3,16 @@ package com.training.service.impl;
 import com.fasterxml.uuid.Generators;
 import com.training.dto.AccountDTO;
 import com.training.entity.Account;
-import com.training.entity.Category;
 import com.training.mapper.AccountMapper;
 import com.training.repository.AccountRepository;
 import com.training.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

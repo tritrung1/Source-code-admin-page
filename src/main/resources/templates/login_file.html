@@ -15,7 +15,16 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-12">
-                        <form action="index.html" method="post" class="tm-login-form">
+                        <div th:if="${#request.getParameter('error') == 'true'}" style="color: red;margin: 10px 0px;">
+                            Login failed!!!<br/>
+                            Reason:
+                            <span th:if="${#session != null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+                                  th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                            Static Summary
+                            </span>
+                        </div>
+
+                        <form th:action="@{/j_spring_security_check}" method="post" class="tm-login-form">
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input
@@ -46,9 +55,11 @@
                                     Login
                                 </button>
                             </div>
-                            <button class="mt-5 btn btn-primary btn-block text-uppercase">
-                                Forgot your password?
-                            </button>
+
+<!--                            <button class="mt-5 btn btn-primary btn-block text-uppercase">-->
+<!--                                Forgot your password?-->
+<!--                            </button>-->
+
                         </form>
                     </div>
                 </div>
@@ -57,9 +68,9 @@
     </div>
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<!-- https://jquery.com/download/ -->
-<script src="js/bootstrap.min.js"></script>
-<!-- https://getbootstrap.com/ -->
+<!--<script src="js/jquery-3.3.1.min.js"></script>-->
+<!--&lt;!&ndash; https://jquery.com/download/ &ndash;&gt;-->
+<!--<script src="js/bootstrap.min.js"></script>-->
+<!--&lt;!&ndash; https://getbootstrap.com/ &ndash;&gt;-->
 </body>
 </html>

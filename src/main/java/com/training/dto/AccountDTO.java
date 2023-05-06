@@ -44,6 +44,9 @@ public class AccountDTO extends DateAudit {
 
     private Boolean active;
 
+    @NotEmpty(message = "Field can't be empty!")
+    private String encryptedPassword;
+
     private Role role;
 
     private Order order;
