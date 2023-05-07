@@ -73,7 +73,9 @@ public class Product extends DateAudit {
     @JoinColumn(name = "feedback_id")
     private Feedback feedback;
 
-    @OneToMany(mappedBy = "product")
-    private List<Order> orders;
+
+    @OneToOne(mappedBy = "product")
+    @JsonBackReference(value="customer")
+    private Item item;
 
 }

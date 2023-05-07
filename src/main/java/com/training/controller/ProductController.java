@@ -48,7 +48,7 @@ public class ProductController {
         return  isDelete ? "Delete success!!!" : "Delete fail!!!";
     }
 
-    @GetMapping(value = ApiPath.PRODUCT_BY_CATEGORY)
+    @PostMapping(value = ApiPath.PRODUCT_BY_CATEGORY)
     public ResponseEntity<List<ProductDTO>> getProductByCategory(@RequestBody CategoryDTO categoryDTO) {
         try {
             if (null == categoryDTO || null == categoryDTO.getCategoryName()) {

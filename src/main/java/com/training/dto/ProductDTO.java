@@ -56,6 +56,6 @@ public class ProductDTO extends DateAudit {
 
     private List<Import> imports;
 
-    private List<Order> orders;
+    private Item item;
 
 }

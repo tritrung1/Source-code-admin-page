@@ -48,8 +48,6 @@ public class CustomerDTO extends DateAudit {
     @NotEmpty(message = "Field can't be empty!")
     private Boolean enabled;
 
-    private List<Order> orders;
-
     private List<Customer> customers;
 
 }

@@ -23,8 +23,8 @@ public class Order extends DateAudit {
     @Column(name = "order_uuid")
     private String orderUuid;
 
-    @Column(name = "order_code")
-    private String orderCode;
+    @OneToMany(mappedBy = "order")
+    private List<Item> items;
 
     @Column(name = "sold_quantity")
     private Integer soldQuantity;
@@ -32,12 +32,8 @@ public class Order extends DateAudit {
     @Column(name = "payment_method")
     private String paymentMethod;
 
-    @Column(name = "price")
-    private Double price;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @Column(name = "total_price")
+    private Double totalPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_detail_id")

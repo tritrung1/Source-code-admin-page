@@ -1,6 +1,7 @@
 package com.training.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
@@ -32,5 +33,6 @@ public class Category extends DateAudit {
 
     @OneToMany(targetEntity = Product.class, mappedBy = "category")
     @JsonManagedReference
+    @JsonIgnore
     private List<Product> products;
 }
