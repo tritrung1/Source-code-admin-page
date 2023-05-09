@@ -23,22 +23,17 @@ public class Item extends DateAudit {
     private Long id;
 
     @Column(name = "item_uuid")
-    private String newsUuid;
+    private String itemUuid;
 
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
     @Column(name = "quantity")
-    private int quantity;
+    private Integer quantity;
 
-    @Column(name = "order_code")
-    private String orderCode;
-
-    @ManyToOne
-    @JoinColumn(name = "id_customer")
-    @JsonBackReference
-    private Customer customer;
+    @Column(name = "active")
+    private Boolean active;
 
     @ManyToOne
     @JoinColumn(name = "order_id")

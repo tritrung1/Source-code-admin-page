@@ -188,11 +188,7 @@ public class MainController {
     }
 
     @PostMapping("/post-manage/rejected/{id}")
-    public String rejectPost(@Valid @PathVariable Long id, @RequestParam String rejectMsg,
-                             BindingResult result) {
-        if (result.hasErrors()) {
-            return "redirect:/post-manage/approved/{id}";
-        }
+    public String rejectPost(@PathVariable Long id, @RequestParam String rejectMsg) {
         PostDTO postDTO = postService.findById(id);
         postDTO.setReason(rejectMsg);
         postDTO.setStatus("rejected");

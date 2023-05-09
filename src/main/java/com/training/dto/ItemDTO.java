@@ -1,6 +1,7 @@
 package com.training.dto;
 import com.training.entity.Customer;
 
+import com.training.entity.Order;
 import com.training.entity.Product;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
@@ -9,11 +10,11 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class ItemDTO extends DateAudit {
     private Long id;
+    private String itemUuid;
     private Product product;
-    private int quantity;
-    private String code;
-    private Customer customer;
+    private Integer quantity;
+    private Boolean active;
+    private Order order;
 }

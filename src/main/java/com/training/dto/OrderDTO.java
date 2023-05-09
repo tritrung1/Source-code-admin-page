@@ -20,7 +20,12 @@ public class OrderDTO extends DateAudit {
     private String orderUuid;
 
     @NotEmpty(message = "Field can't be empty!")
+    private String orderCode;
+
+    @NotEmpty(message = "Field can't be empty!")
     private String paymentMethod;
+
+    private List<Item> items;
 
     private Double totalPrice;
 

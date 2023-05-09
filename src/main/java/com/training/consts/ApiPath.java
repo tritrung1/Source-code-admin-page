@@ -121,6 +121,11 @@ public interface ApiPath {
     String CUSTOMER_UPDATE = API + "/customer/update";
     String CUSTOMER_BY_ID = API + "/customer/{id}";
 
-
+    // Item
+    String ITEM_GET_ALL = API + "/items";
+    String ITEM_CREATE = API + "/item/create";
+    String ITEM_DELETE = API + "/item/delete";
+    String ITEM_UPDATE = API + "/item/update";
+    String ITEM_BY_ID = API + "/item/{id}";
 
 }
