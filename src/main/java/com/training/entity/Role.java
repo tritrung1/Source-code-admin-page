@@ -7,6 +7,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -30,6 +31,9 @@ public class Role extends DateAudit {
 
     @OneToMany(mappedBy = "role")
     private List<Account> accounts;
+
+//    @OneToMany(mappedBy = "role")
+//    Set<AccountRole> accountRole;
 
     @Override
     public String toString() {

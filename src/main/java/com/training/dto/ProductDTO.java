@@ -44,9 +44,9 @@ public class ProductDTO extends DateAudit {
     @NotNull(message = "Field can't be null!")
     private Integer importQuantity;
 
-    private Category category;
+    private String accountName;
 
-    private Account account;
+    private Category category;
 
     private Post post;
 

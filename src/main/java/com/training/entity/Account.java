@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -54,6 +55,8 @@ public class Account extends DateAudit {
     @Column(name = "password",length = 128, nullable = false)
     private String encryptedPassword;
 
+//    private String roleName;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", referencedColumnName = "role_ids")
     private Role role;
@@ -66,10 +69,10 @@ public class Account extends DateAudit {
     private List<Notification> notifications;
 
     @OneToMany(mappedBy = "account")
-    private List<Product> products;
-
-    @OneToMany(mappedBy = "account")
     private List<Report> reports;
+
+//    @OneToMany(mappedBy = "account")
+//    Set<AccountRole> accountRole;
 
     @Override
     public String toString() {

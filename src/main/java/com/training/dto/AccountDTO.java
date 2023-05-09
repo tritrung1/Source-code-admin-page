@@ -46,13 +46,13 @@ public class AccountDTO extends DateAudit {
     @NotEmpty(message = "Field can't be empty!")
     private String encryptedPassword;
 
+//    private String roleName;
+
     private Role role;
 
     private Order order;
 
     private List<Notification> notifications;
-
-    private List<Product> products;
 
     private List<Report> reports;
 

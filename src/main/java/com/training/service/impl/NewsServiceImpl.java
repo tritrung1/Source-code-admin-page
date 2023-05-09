@@ -2,7 +2,9 @@ package com.training.service.impl;
 
 import com.fasterxml.uuid.Generators;
 import com.training.dto.NewsDTO;
+import com.training.dto.ProductDTO;
 import com.training.entity.News;
+import com.training.entity.Product;
 import com.training.mapper.NewsMapper;
 import com.training.repository.NewsRepository;
 import com.training.service.NewsService;
@@ -84,6 +86,14 @@ public class NewsServiceImpl implements NewsService {
         List<News> news = newsRepository.findBySoldDatePending();
         return news == null || news.size() == 0 ? new ArrayList<>()
                 : news.stream().map(item -> newsMapper.convertEntityToDTO(item))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<NewsDTO> findByAccount(String accountName) {
+        List<News> news_by_account = newsRepository.findByAccount(accountName);
+        return news_by_account == null || news_by_account.size() == 0 ? new ArrayList<>()
+                : news_by_account.stream().map(item -> newsMapper.convertEntityToDTO(item))
                 .collect(Collectors.toList());
     }
 }

@@ -32,7 +32,7 @@ public class PostDTO extends DateAudit {
 
     private Product product;
 
-    private String accountId;
+    private String accountName;
 
     private List<Notification> notifications;
 }

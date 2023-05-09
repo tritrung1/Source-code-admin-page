@@ -86,4 +86,12 @@ public class ProductServiceImpl implements ProductService {
                 : product_by_category.stream().map(item -> productMapper.convertEntityToDTO(item))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProductDTO> findByAccount( String accountName) {
+        List<Product> product_by_account = productRepository.findByAccount(accountName);
+        return product_by_account == null || product_by_account.size() == 0 ? new ArrayList<>()
+                : product_by_account.stream().map(item -> productMapper.convertEntityToDTO(item))
+                .collect(Collectors.toList());
+    }
 }

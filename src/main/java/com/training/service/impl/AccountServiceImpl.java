@@ -6,6 +6,7 @@ import com.training.entity.Account;
 import com.training.mapper.AccountMapper;
 import com.training.repository.AccountRepository;
 import com.training.service.AccountService;
+import com.training.utils.EncryptedPasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -32,6 +33,8 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     AccountMapper accountMapper;
 
+    EncryptedPasswordUtils changePasswordToEncryptedPassword;
+
     @Override
     public List<AccountDTO> findAll() {
         List<Account> accounts = accountRepository.findAll();
@@ -55,6 +58,9 @@ public class AccountServiceImpl implements AccountService {
 
         // set field or data for generate UUID
         accountDTO.setAccountUuid(uuid.toString());
+
+        String password = changePasswordToEncryptedPassword.encryptedPassword(accountDTO.getEncryptedPassword());
+        accountDTO.setEncryptedPassword(password);
 
         Account account = accountRepository.save(accountMapper.convertDTOToEntity(accountDTO));
         return account == null ? new AccountDTO() : accountMapper.convertEntityToDTO(account);

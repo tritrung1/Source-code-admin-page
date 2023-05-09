@@ -44,8 +44,8 @@ public class Post extends DateAudit {
     private Product product;
 
 
-    @Column(name = "account_id")
-    private String accountId;
+    @Column(name = "account_name")
+    private String accountName;
 
     @OneToMany(mappedBy = "post")
     private List<Notification> notifications;

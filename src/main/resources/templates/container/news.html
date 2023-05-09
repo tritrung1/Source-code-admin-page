@@ -20,7 +20,7 @@
                         <tr th:each="news:${news}">
                             <th scope="row" th:text="${news.id}"><input type="checkbox" /></th>
                             <td th:text="${news.pushDate}"/>
-                            <td class="tm-user-name" th:text="${news.accountId}"/>
+                            <td class="tm-user-name" th:text="${news.accountName}"/>
                             <td th:text="${news.expiredDate}"/>
                             <td th:text="${news.post.product.productName}"/>
                             <td>

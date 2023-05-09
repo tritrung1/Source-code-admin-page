@@ -37,6 +37,6 @@ public class NewsDTO extends DateAudit {
 
     private Post post;
 
-    private String accountId;
+    private String accountName;
 
 }

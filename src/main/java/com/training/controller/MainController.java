@@ -55,8 +55,6 @@ public class MainController {
     @Autowired
     PostMapper postMapper;
 
-    EncryptedPasswordUtils changePasswordToEncryptedPassword;
-
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login() {
         return "login_file";
@@ -90,10 +88,10 @@ public class MainController {
     }
 
     @RequestMapping("/products")
-    public String products(Model model) {
+    public String products(Model model, Principal principal) {
         model.addAttribute("direction", "container/products");
 
-        List<ProductDTO> products = productService.findAll();
+        List<ProductDTO> products = productService.findByAccount(principal.getName());
         model.addAttribute("products", products);
 
         List<CategoryDTO> categories = categoryService.findAll();
@@ -137,8 +135,7 @@ public class MainController {
             model.addAttribute("direction", "container/create-account");
             return "index";
         }
-        String password = changePasswordToEncryptedPassword.encryptedPassword(accountDTO.getEncryptedPassword());
-        accountDTO.setEncryptedPassword(password);
+
         accountService.save(accountDTO);
         return "redirect:/accounts";
     }
@@ -175,12 +172,14 @@ public class MainController {
     }
 
     @GetMapping("/post-manage/approved/{id}")
-    public String acceptPost(@PathVariable Long id) {
+    public String acceptPost(@PathVariable Long id, Principal principal) {
         PostDTO postDTO = postService.findById(id);
         postDTO.setStatus("approved");
-        postService.save(postDTO);
+        postDTO = postService.save(postDTO);
         //save News
         NewsDTO newsDTO = new NewsDTO();
+        // Get username current login and save
+        newsDTO.setAccountName(postDTO.getAccountName());
         newsDTO.setPost(postMapper.convertDTOToEntity(postDTO));
         newsService.save(newsDTO);
 
@@ -226,11 +225,13 @@ public class MainController {
     }
     @PostMapping("/save-product")
     public String saveProduct(@Valid @ModelAttribute("productForm") ProductDTO productDTO, Model model,
-                              BindingResult result) {
+                              BindingResult result, Principal principal) {
         if (result.hasErrors()) {
             model.addAttribute("direction","container/add-product");
             return "index";
         }
+        // Get username current login and save
+        productDTO.setAccountName(principal.getName());
         productDTO = productService.save(productDTO);
 
         //save price in same time with product
@@ -246,6 +247,8 @@ public class MainController {
 
         //save Post
         PostDTO postDTO = new PostDTO();
+        // Get username current login and save
+        postDTO.setAccountName(productDTO.getAccountName());
         postDTO.setProduct(productMapper.convertDTOToEntity(productDTO));
         postDTO.setStatus("pending");
         postService.save(postDTO);
@@ -306,9 +309,9 @@ public class MainController {
     }
 
     @GetMapping("/news")
-    public String news(Model model) {
+    public String news(Model model, Principal principal) {
         model.addAttribute("direction", "container/news");
-        List<NewsDTO> news = newsService.findAll();
+        List<NewsDTO> news = newsService.findByAccount(principal.getName());
         model.addAttribute("news", news);
         return "index";
     }

@@ -29,10 +29,18 @@ public class Login {
     }
 
     public List<String> getRoleNames(Long id) {
-        String sql = "SELECT e.role.roleName FROM AccountRole e WHERE e.account.id =:id";
+        String sql = "SELECT e.role.roleName FROM Account e WHERE e.id =:id";
         Query query = this.entityManager.createQuery(sql, String.class);
         query.setParameter("id", id);
 
         return query.getResultList();
     }
+
+//    public List<String> getRoleNames(Long id) {
+//        String sql = "SELECT e.role.roleName FROM AccountRole e WHERE e.account.id =:id";
+//        Query query = this.entityManager.createQuery(sql, String.class);
+//        query.setParameter("id", id);
+//
+//        return query.getResultList();
+//    }
 }

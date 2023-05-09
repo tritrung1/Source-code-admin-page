@@ -48,13 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/login", "/logout").permitAll();
 
         // page requires login as ROLE_LEADER or ROLE_ADMIN or ROLE_SUPPLIER
-        http.authorizeRequests().antMatchers("/index", "/products", "/order-list-manage").access("hasAnyRole('ROLE_LEADER', 'ROLE_ADMIN', 'ROLE_SUPPLIER')");
+        http.authorizeRequests().antMatchers("/index", "/products", "/order-list-manage", "/add-product", "/save-product", "/edit-product/{id}", "/save-edit-product", "/delete-product/{id}", "/delete-category/{id}", "/feedback", "/answer-feedback", "/news", "/news/push/{id}").access("hasAnyRole('ROLE_LEADER', 'ROLE_ADMIN', 'ROLE_SUPPLIER')");
 
         // page requires login as ROLE_LEADER or ROLE_ADMIN
-        http.authorizeRequests().antMatchers("/post-manage", "/post-manage/approved/{id}", "/post-manage/rejected/{id}", "/news", "/news/push/{id}").access("hasAnyRole('ROLE_LEADER','ROLE_ADMIN')");
-
-        // For only ROLE_SUPPLIER
-        http.authorizeRequests().antMatchers("/add-product", "/save-product", "/edit-product/{id}", "/save-edit-product", "/delete-product/{id}", "/delete-category/{id}", "/feedback", "/answer-feedback").access("hasRole('ROLE_SUPPLIER')");
+        http.authorizeRequests().antMatchers("/post-manage", "/post-manage/approved/{id}", "/post-manage/rejected/{id}").access("hasAnyRole('ROLE_LEADER','ROLE_ADMIN')");
 
         // For ROLE_ADMIN only
         http.authorizeRequests().antMatchers("/accounts","/create-account","/create-account-form", "/update-account", "/update-account-form/{id}", "/delete-account/{id}").access("hasRole('ROLE_ADMIN')");

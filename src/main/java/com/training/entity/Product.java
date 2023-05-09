@@ -65,9 +65,8 @@ public class Product extends DateAudit {
     @JsonManagedReference
     private Post post;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    private Account account;
+    @Column(name = "account_name")
+    private String accountName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feedback_id")

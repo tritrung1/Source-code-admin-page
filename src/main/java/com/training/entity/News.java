@@ -50,7 +50,7 @@ public class News extends DateAudit {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @Column(name = "account_id")
-    private String accountId;
+    @Column(name = "account_name")
+    private String accountName;
 
 }
