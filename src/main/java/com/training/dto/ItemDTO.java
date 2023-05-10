@@ -15,6 +15,5 @@ public class ItemDTO extends DateAudit {
     private String itemUuid;
     private Product product;
     private Integer quantity;
-    private Boolean active;
     private Order order;
 }

@@ -1,9 +1,7 @@
 package com.training.controller;
 import com.training.dto.*;
-import com.training.entity.Post;
-import com.training.entity.Product;
-import com.training.mapper.PostMapper;
-import com.training.mapper.ProductMapper;
+import com.training.entity.*;
+import com.training.mapper.*;
 import com.training.service.*;
 import com.training.utils.EncryptedPasswordUtils;
 import com.training.utils.WebUtils;
@@ -54,6 +52,18 @@ public class MainController {
     RoleService roleService;
     @Autowired
     PostMapper postMapper;
+    @Autowired
+    DeliveryDetailService deliveryDetailService;
+    @Autowired
+    DeliveryDetailMapper deliveryDetailMapper;
+    @Autowired
+    OrderStatusMapper orderStatusMapper;
+    @Autowired
+    OrderStatusService orderStatusService;
+    @Autowired
+    ItemMapper itemMapper;
+    @Autowired
+    ItemService itemService;
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login() {
@@ -198,7 +208,16 @@ public class MainController {
     @RequestMapping("/order-list-manage")
     public String orderList(Model model) {
         model.addAttribute("direction", "container/order-list-manage");
-        model.addAttribute("orders", orderService.findAll());
+        List<OrderDTO> orderList = orderService.findAll();
+        model.addAttribute("orders", orderList);
+
+        for (OrderDTO orderDTO : orderList) {
+            orderDTO.setDeliveryDetail(deliveryDetailMapper.convertDTOToEntity(deliveryDetailService.findById(1l)));
+            orderDTO.setOrderStatus(orderStatusMapper.convertDTOToEntity(orderStatusService.findById(1l)));
+//            List<ItemDTO> items = itemMapper.convertDTOToEntity(orderDTO.getItems());
+//            model.addAttribute("items", items);
+        }
+
         return "index";
     }
 

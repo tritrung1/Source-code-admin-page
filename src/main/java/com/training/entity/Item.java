@@ -32,9 +32,6 @@ public class Item extends DateAudit {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "active")
-    private Boolean active;
-
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;

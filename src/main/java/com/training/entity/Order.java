@@ -35,11 +35,15 @@ public class Order extends DateAudit {
     @Column(name = "total_price")
     private Double totalPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "delivery_detail_id")
+    private Long deliveryDetailId;
+
     @JoinColumn(name = "delivery_detail_id")
     private DeliveryDetail deliveryDetail;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "order_status_id")
+    private Long orderStatusId;
+
     @JoinColumn(name = "order_status_id")
     private OrderStatus orderStatus;
 

@@ -4,6 +4,7 @@ import com.training.entity.*;
 import com.training.entity.dateaudit.DateAudit;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.util.List;
 
@@ -16,20 +17,21 @@ public class OrderDTO extends DateAudit {
 
     private Long id;
 
-    @NotEmpty(message = "Field can't be empty!")
     private String orderUuid;
 
-    @NotEmpty(message = "Field can't be empty!")
     private String orderCode;
 
-    @NotEmpty(message = "Field can't be empty!")
     private String paymentMethod;
 
     private List<Item> items;
 
     private Double totalPrice;
 
+    private Long deliveryDetailId;
+
     private DeliveryDetail deliveryDetail;
+
+    private Long orderStatusId;
 
     private OrderStatus orderStatus;
 

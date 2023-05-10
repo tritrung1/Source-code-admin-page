@@ -10,9 +10,8 @@
                         <th></th>
                         <th scope="col">CUSTOMER NAME</th>
                         <th scope="col">CUSTOMER PHONE</th>
-                        <th scope="col">PRODUCT NAME</th>
-                        <th scope="col">QUANTITY</th>
-                        <th scope="col">PRICE</th>
+<!--                        <th scope="col">ITEMS</th>-->
+                        <th scope="col">TOTAL PRICE</th>
                         <th scope="col">PAYMENT METHOD</th>
                         <th scope="col">DELIVERY DATE</th>
                         <th scope="col">SHIPPING UNIT</th>
@@ -26,9 +25,13 @@
                         <td><b th:text="${order.id}" /></td>
                         <td><b th:text="${order.customer.lastName}" /></td>
                         <td><b th:text="${order.customer.customerPhone}" /></td>
-                        <td><b th:text="${order.product.productName}" /></td>
-                        <td></td>
-                        <td><b th:text="${order.price}" /></td>
+<!--                        <td>-->
+<!--                            <td th:each="item: ${items}">-->
+<!--                                <td><b th:text="${item.quantity}" /></td>-->
+<!--                                <td><b th:text="${item.product.productName}" /></td>-->
+<!--                            </td>-->
+<!--                        </td>-->
+                        <td><b th:text="${order.totalPrice}" /></td>
                         <td><b th:text="${order.paymentMethod}" /></td>
                         <td><b th:text="${order.deliveryDetail.deliveryDate}" /></td>
                         <td><b th:text="${order.deliveryDetail.shippingUnit}" /></td>
