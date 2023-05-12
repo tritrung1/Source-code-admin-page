@@ -121,11 +121,13 @@ public class MainController {
     }
 
     @PostMapping("/update-account")
-    public String updateAccount(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO,
-                                BindingResult result) {
-        if (result.hasErrors()) {
-            return "redirect:/update-account-form/{id}";
-        }
+    public String updateAccount( @ModelAttribute("accountDTO") AccountDTO accountDTO, Model model) {
+
+        model.addAttribute("direction", "container/create-account");
+        List<RoleDTO> roles = roleService.findAll();
+        model.addAttribute("roles", roles);
+
+
         accountService.save(accountDTO);
         return "redirect:/accounts";
     }
@@ -137,6 +139,8 @@ public class MainController {
         AccountDTO accountDTO = accountService.findById(id);
 
         model.addAttribute("accountDTO", accountDTO);
+        List<RoleDTO> roles = roleService.findAll();
+        model.addAttribute("roles", roles);
         return "index";
     }
     @PostMapping(value = "/create-account")

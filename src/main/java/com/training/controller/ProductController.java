@@ -61,4 +61,18 @@ public class ProductController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping(value = ApiPath.PRODUCT_BY_CATEGORY_ID)
+    public ResponseEntity<List<ProductDTO>> getProductByCategory(@PathVariable("id") Long id) {
+        try {
+            if (null == id) {
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            List<ProductDTO> list = service.findAllByIdCategory(id);
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        } catch (Exception ex) {
+            log.error("Error when get product by category:", ex);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
