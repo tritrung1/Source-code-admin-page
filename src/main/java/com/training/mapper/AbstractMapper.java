@@ -4,11 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import java.lang.reflect.Type;
 
-/**
- * @author modani
- * @param <T>
- * @param <E>
- */
 public abstract class AbstractMapper<T, E> {
 
     protected final ModelMapper mapper;

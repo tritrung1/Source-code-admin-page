@@ -23,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -214,8 +215,9 @@ public class MainController {
         for (OrderDTO orderDTO : orderList) {
             orderDTO.setDeliveryDetail(deliveryDetailMapper.convertDTOToEntity(deliveryDetailService.findById(1l)));
             orderDTO.setOrderStatus(orderStatusMapper.convertDTOToEntity(orderStatusService.findById(1l)));
-//            List<ItemDTO> items = itemMapper.convertDTOToEntity(orderDTO.getItems());
-//            model.addAttribute("items", items);
+            List<Item> items = orderDTO.getItems();
+            List<ItemDTO> itemsDTOs = items.stream().map(obj -> itemMapper.convertEntityToDTO(obj)).collect(Collectors.toList());
+            model.addAttribute("itemsDTOs", itemsDTOs);
         }
 
         return "index";
@@ -365,11 +367,10 @@ public class MainController {
     }
 
     @RequestMapping(value = "/answer-feedback", method = RequestMethod.POST)
-    public String saveAnswer(@Valid @RequestParam Long id, @RequestParam String reply,
-                             BindingResult result) {
-        if (result.hasErrors()) {
-            return "redirect:/feedback";
-        }
+    public String saveAnswer(@RequestParam Long id, @RequestParam String reply) {
+//        if (result.hasErrors()) {
+//            return "redirect:/feedback";
+//        }
         FeedbackDTO feedbackDTO = feedbackService.findById(id);
 
         feedbackDTO.setActive(false);

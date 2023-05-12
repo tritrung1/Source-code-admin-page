@@ -38,13 +38,13 @@ public class Order extends DateAudit {
     @Column(name = "delivery_detail_id")
     private Long deliveryDetailId;
 
-    @JoinColumn(name = "delivery_detail_id")
+    @JoinColumn(name = "delivery_detail")
     private DeliveryDetail deliveryDetail;
 
     @Column(name = "order_status_id")
     private Long orderStatusId;
 
-    @JoinColumn(name = "order_status_id")
+    @JoinColumn(name = "order_status")
     private OrderStatus orderStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)

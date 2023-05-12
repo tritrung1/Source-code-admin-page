@@ -25,13 +25,11 @@ public class FeedbackDTO extends DateAudit {
     @NotNull(message = "Field can't be null!")
     private String opinion;
 
-    @NotNull(message = "Field can't be null!")
     private String images;
 
     @NotEmpty(message = "Field can't be empty!")
     private Boolean active;
 
-    @NotEmpty(message = "Field can't be empty!")
     private String reply;
 
     private Customer customer;
