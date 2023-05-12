@@ -61,7 +61,7 @@ public class Product extends DateAudit {
     private Category category;
 
     //one to one with table post
-    @OneToOne(mappedBy = "product")
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Post post;
 

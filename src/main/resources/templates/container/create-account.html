@@ -53,13 +53,13 @@
                         <p th:if="${#fields.hasErrors('address')}" class="error" th:errors="*{address}" />
                     </div>
                     <div class="form-group col-12">
-                        <label for="accountImage">Account Image</label>
-                        <input th:field="*{accountImg}" id="accountImage" name="accountImage" type="text" class="form-control validate" />
+                        <label for="fileUpload">Account Image</label>
+                        <input th:field="*{accountImg}" id="fileUpload" name="accountImage" onclick="showFileName()" type="file"  />
                         <p th:if="${#fields.hasErrors('accountImg')}" class="error" th:errors="*{accountImg}" />
                     </div>
                     <div class="form-group col-12">
                         <label for="BannerImage">Banner Image</label>
-                        <input th:field="*{bannerImg}" id="BannerImage" name="BannerImage" type="text" class="form-control validate" />
+                        <input th:field="*{bannerImg}" id="BannerImage" name="BannerImage" type="file" />
                         <p th:if="${#fields.hasErrors('bannerImg')}" class="error" th:errors="*{bannerImg}" />
                     </div>
 <!--                    <div class="col-12">-->

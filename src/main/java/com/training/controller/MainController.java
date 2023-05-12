@@ -144,6 +144,8 @@ public class MainController {
                                 BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("direction", "container/create-account");
+            List<RoleDTO> roles = roleService.findAll();
+            model.addAttribute("roles", roles);
             return "index";
         }
 

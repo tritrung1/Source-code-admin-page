@@ -46,7 +46,7 @@ public class S3Utils {
         String accessKey = "AKIA2OF4S3RX2ATER4PL";
         String secretKey = "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";
         String bucketName = "java-mock-project-2023";
-        File file = new File("E:\\research\\anh-thien-nhien-full-hd-2k-4k.jpg");
+        File file = new File("E:\\research\\download.jpg");
         String fileName = String.valueOf(System.currentTimeMillis()) + "_" + file.getName();
         String fileUrl = "https://" + bucketName + endpointUrl + "/" + fileName;
         System.out.println("File is:" + fileUrl);

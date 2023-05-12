@@ -7,6 +7,7 @@ import com.training.mapper.AccountMapper;
 import com.training.repository.AccountRepository;
 import com.training.service.AccountService;
 import com.training.utils.EncryptedPasswordUtils;
+import com.training.utils.S3Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.io.File;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,21 @@ public class AccountServiceImpl implements AccountService {
 
         String password = changePasswordToEncryptedPassword.encryptedPassword(accountDTO.getEncryptedPassword());
         accountDTO.setEncryptedPassword(password);
+
+        String endpointUrl = ".s3.ap-southeast-1.amazonaws.com";
+        String accessKey = "AKIA2OF4S3RX2ATER4PL";
+        String secretKey = "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";
+        String bucketName = "java-mock-project-2023";
+        File file = new File("E:\\research\\download.jpg");
+        String fileName = String.valueOf(System.currentTimeMillis()) + "_" + file.getName();
+        String fileUrl = "https://" + bucketName + endpointUrl + "/" + fileName;
+        try {
+            S3Utils.uploadFileTos3bucket(accessKey, secretKey, bucketName, fileName, file);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        accountDTO.setAccountImgPath(fileUrl);
+        accountDTO.setAccountImg(fileName);
 
         Account account = accountRepository.save(accountMapper.convertDTOToEntity(accountDTO));
         return account == null ? new AccountDTO() : accountMapper.convertEntityToDTO(account);
