@@ -1,6 +1,6 @@
 package com.training.configuration;
 
-import com.training.service.UserDetailsServiceImpl;
+import com.training.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

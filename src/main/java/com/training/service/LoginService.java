@@ -1,4 +1,4 @@
-package com.training.repository;
+package com.training.service;
 
 import com.training.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class Login {
+public class LoginService {
     @Autowired
     private EntityManager entityManager;
 
